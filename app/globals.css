@@ -455,11 +455,17 @@ header.scrolled .top-bar {
   visibility: hidden;
   transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
   display: flex;
-  align-items: center;
-  padding-top: var(--header-height);
+  flex-direction: column;
+  padding-top: calc(var(--header-height) + 2.5rem);
   padding-bottom: 6rem;
   background-size: cover;
   background-position: center;
+}
+
+.slide .container {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100%;
 }
 
 .slide.active {
@@ -1982,6 +1988,9 @@ footer {
   :root {
     --header-height: 70px;
   }
+  .container {
+    padding: 0 1.25rem;
+  }
   .top-bar {
     display: none;
   }
@@ -2010,6 +2019,36 @@ footer {
   .nav-links.active {
     left: 0;
   }
+  .hero-slider-container {
+    height: auto;
+    min-height: 0;
+  }
+  .slide {
+    position: relative;
+    display: none;
+    height: auto;
+    padding: calc(var(--header-height) + 1.5rem) 1.5rem 5rem 1.5rem;
+  }
+  .slide.active {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    visibility: visible;
+  }
+  .slide-image {
+    height: 280px;
+  }
+  .slider-control {
+    top: auto;
+    bottom: 1.5rem;
+    transform: none;
+  }
+  .slider-control.prev {
+    left: 2rem;
+  }
+  .slider-control.next {
+    right: 2rem;
+  }
   .grid-2 {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -2033,6 +2072,15 @@ footer {
     grid-template-columns: 1fr;
     margin-top: 0;
     border-radius: 0;
+  }
+  .mv-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  .mv-icon {
+    align-self: flex-start;
   }
   .why-us-grid {
     grid-template-columns: 1fr;
