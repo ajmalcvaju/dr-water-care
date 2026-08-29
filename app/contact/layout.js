@@ -1,7 +1,7 @@
 export const metadata = {
-  title: 'Contact Us | Dr. Water Care Kozhikode - Phone & Address',
-  description: 'Contact Dr. Water Care Calicut at 070126 20021. Visually find our Eranhipaalam office in Kozhikode, Kerala, or submit your query online.',
-  keywords: 'Dr. Water Care Phone, Water Care Address Kozhikode, Eranhipaalam filter service contact, Water purification help Kerala',
+  title: 'Contact Us | Aqua Solve Water Clinic Kozhikode - Phone & Address',
+  description: 'Contact Aqua Solve Water Clinic at 94971 50452 / 98462 53025. Visually find our Thamarassery office in Kozhikode, Kerala, or submit your query online.',
+  keywords: 'Aqua Solve Water Clinic Phone, Water Clinic Address Kozhikode, Thamarassery filter service contact, Water purification help Kerala',
 };
 
 export default function ContactLayout({ children }) {

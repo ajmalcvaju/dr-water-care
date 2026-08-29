@@ -1976,6 +1976,28 @@ footer {
     margin-top: 0;
     border-radius: 0;
   }
+  .mv-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  .mv-icon {
+    align-self: center;
+    margin: 0 auto;
+  }
+  .mv-info {
+    width: 100%;
+    text-align: center;
+  }
+  .mv-info h3 {
+    text-align: center;
+  }
+  .mv-info p {
+    text-align: center;
+  }
   .why-us-grid {
     grid-template-columns: 1fr;
   }
@@ -1997,6 +2019,38 @@ footer {
   }
   .services-detail-grid {
     grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+  .service-detail-card {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2.2rem 1.5rem !important;
+  }
+  .service-detail-card .feature-icon-wrapper {
+    margin: 0 auto 1rem auto !important;
+  }
+  .service-detail-card h3 {
+    text-align: center !important;
+    width: 100% !important;
+  }
+  .service-detail-card p {
+    text-align: center !important;
+    width: 100% !important;
+  }
+  .service-features-list {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  .service-features-list li {
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
   }
   .contact-layout-grid {
     grid-template-columns: 1fr;

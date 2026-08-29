@@ -36,10 +36,29 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API delay (1.5 seconds)
+    const name = formData.name || 'Not specified';
+    const phone = formData.phone || 'Not specified';
+    const email = formData.email || 'Not specified';
+    const subject = formData.subject || 'General Inquiry';
+    const message = formData.message || 'No message text provided';
+
+    const text = `Hi Aqua Solve Water Clinic, I would like to send an Inquiry from your website.
+
+📩 *Contact Details:*
+• *Name:* ${name}
+• *Phone:* ${phone}
+• *Email:* ${email}
+• *Subject:* ${subject}
+• *Message:* ${message}`;
+
+    const whatsappUrl = `https://wa.me/919497150452?text=${encodeURIComponent(text)}`;
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitSuccess(true);
+      if (typeof window !== 'undefined') {
+        window.open(whatsappUrl, '_blank');
+      }
       setFormData({
         name: '',
         phone: '',
@@ -48,11 +67,10 @@ export default function Contact() {
         message: ''
       });
 
-      // Clear success notification after 6 seconds
       setTimeout(() => {
         setSubmitSuccess(false);
       }, 6000);
-    }, 1500);
+    }, 600);
   };
 
   return (
@@ -97,7 +115,16 @@ export default function Contact() {
                 </div>
                 <div className="info-text">
                   <h3>Our Location</h3>
-                  <p>S.V. Colony, P.O, Eranhipaalam,<br />Kozhikode, Kerala 673006</p>
+                  <p>
+                    <a 
+                      href="https://maps.app.goo.gl/QV4dZ44GWSHjJnKV7" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      style={{ color: 'var(--bg-white)', textDecoration: 'underline' }}
+                    >
+                      Surabhi Complex, Karadi,<br />Thamarassery, Kerala 673573
+                    </a>
+                  </p>
                 </div>
               </div>
 
@@ -108,7 +135,8 @@ export default function Contact() {
                 </div>
                 <div className="info-text">
                   <h3>Call Support</h3>
-                  <p><a href="tel:+917012620021" style={{ color: 'var(--bg-white)' }}>070126 20021</a></p>
+                  <p style={{ marginBottom: '0.3rem' }}><a href="tel:+919497150452" style={{ color: 'var(--bg-white)' }}>94971 50452</a></p>
+                  <p><a href="tel:+919846253025" style={{ color: 'var(--bg-white)' }}>98462 53025</a></p>
                 </div>
               </div>
 
@@ -119,7 +147,7 @@ export default function Contact() {
                 </div>
                 <div className="info-text">
                   <h3>Email Us</h3>
-                  <p><a href="mailto:info@drwatercare.com" style={{ color: 'var(--bg-white)' }}>info@drwatercare.com</a></p>
+                  <p><a href="mailto:aquasolve.in@gmail.com" style={{ color: 'var(--bg-white)' }}>aquasolve.in@gmail.com</a></p>
                 </div>
               </div>
 
@@ -252,7 +280,7 @@ export default function Contact() {
           <div className="map-placeholder-section animate-on-scroll">
             <div className="section-header" style={{ marginBottom: '2rem' }}>
               <h2>Our Physical Address Map</h2>
-              <p>Visit us in Eranhipaalam, Kozhikode, for laboratory analysis or direct purchases.</p>
+              <p>Visit us in Thamarassery, Kozhikode, for laboratory analysis or direct purchases.</p>
             </div>
 
             <div className="map-grid-canvas">
@@ -273,16 +301,16 @@ export default function Contact() {
                 <path d="M-10 50 C200 80, 400 30, 600 70 C700 90, 750 20, 810 10" stroke="#88C0D0" strokeWidth="30" fill="none" opacity="0.6"/>
                 
                 <rect x="50" y="150" width="120" height="100" rx="10" fill="#A3BE8C" opacity="0.4"/>
-                <text x="110" y="205" fontFamily="Outfit, sans-serif" fontWeight="600" fontSize="12" fill="#4C566A" textAnchor="middle">S.V. Colony Park</text>
+                <text x="110" y="205" fontFamily="Outfit, sans-serif" fontWeight="600" fontSize="12" fill="#4C566A" textAnchor="middle">Karadi Greenery</text>
 
                 <rect x="580" y="140" width="140" height="80" rx="10" fill="#A3BE8C" opacity="0.4"/>
-                <text x="650" y="185" fontFamily="Outfit, sans-serif" fontWeight="600" fontSize="12" fill="#4C566A" textAnchor="middle">Eranhipaalam Greenery</text>
+                <text x="650" y="185" fontFamily="Outfit, sans-serif" fontWeight="600" fontSize="12" fill="#4C566A" textAnchor="middle">Surabhi Complex</text>
 
                 <circle cx="220" cy="120" r="8" fill="#5E81AC"/>
-                <text x="230" y="115" fontFamily="Outfit, sans-serif" fontSize="10" fontWeight="600" fill="#2E3440">Eranhipaalam Junction</text>
+                <text x="230" y="115" fontFamily="Outfit, sans-serif" fontSize="10" fontWeight="600" fill="#2E3440">Thamarassery Junction</text>
                 
                 <circle cx="520" cy="300" r="8" fill="#5E81AC"/>
-                <text x="532" y="304" fontFamily="Outfit, sans-serif" fontSize="10" fontWeight="600" fill="#2E3440">Calicut Bypass Road</text>
+                <text x="532" y="304" fontFamily="Outfit, sans-serif" fontSize="10" fontWeight="600" fill="#2E3440">Thamarassery - Wayanad Road</text>
                 
                 <g transform="translate(520, 160)">
                   <path d="M0 -30 C-10 -30, -18 -22, -18 -12 C-18 0, 0 30, 0 30 C0 30, 18 0, 18 -12 C18 -22, 10 -30, 0 -30 Z" fill="#BF616A"/>
@@ -291,9 +319,18 @@ export default function Contact() {
               </svg>
 
               <div className="map-card-popup">
-                <h4>Dr. Water Care</h4>
-                <p>S.V. Colony, Eranhipaalam, Kozhikode</p>
-                <p style={{ fontWeight: 700, color: 'var(--secondary-color)', marginTop: '0.3rem' }}>Call: 070126 20021</p>
+                <h4>Aqua Solve Water Clinic</h4>
+                <p>Surabhi Complex, Karadi, Thamarassery</p>
+                <p style={{ fontWeight: 700, color: 'var(--secondary-color)', marginTop: '0.3rem' }}>Call: 94971 50452 / 98462 53025</p>
+                <a 
+                  href="https://maps.app.goo.gl/QV4dZ44GWSHjJnKV7" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn btn-primary" 
+                  style={{ display: 'block', fontSize: '0.8rem', padding: '0.4rem 0.8rem', marginTop: '0.8rem', textAlign: 'center', background: 'var(--secondary-color)', color: '#fff', textDecoration: 'none' }}
+                >
+                  View on Google Maps
+                </a>
               </div>
             </div>
           </div>

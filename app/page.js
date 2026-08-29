@@ -1,8 +1,73 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useQuote } from '../context/QuoteContext';
+
+// Animated stats counter component
+const StatsCounter = ({ target, duration = 2000, suffix = "", decimals = 0 }) => {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    let currentRef = null;
+    if (elementRef.current) {
+      currentRef = elementRef.current;
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    let start = 0;
+    const end = parseFloat(target);
+    if (start === end) return;
+
+    const totalMiliseconds = duration;
+    const incrementTime = 30;
+    const totalSteps = totalMiliseconds / incrementTime;
+    const increment = (end - start) / totalSteps;
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        clearInterval(timer);
+        setCount(end);
+      } else {
+        setCount(start);
+      }
+    }, incrementTime);
+
+    return () => clearInterval(timer);
+  }, [hasStarted, target, duration]);
+
+  const formattedCount = decimals > 0 
+    ? count.toFixed(decimals) 
+    : Math.floor(count).toLocaleString();
+
+  return (
+    <span ref={elementRef}>
+      {formattedCount}{suffix}
+    </span>
+  );
+};
 
 export default function Home() {
   const { openModal } = useQuote();
@@ -14,7 +79,7 @@ export default function Home() {
 
   const heroSlides = [
     {
-      title: <>Welcome to<br />Dr. Water Care</>,
+      title: <>Welcome to<br />Aqua Solve Water Clinic</>,
       sub: "Kozhikode's premium water treatment organization. Delivering customized filters and systems matching rigorous global standards.",
       bullets: [
         "80% of all diseases are waterborne",
@@ -33,22 +98,7 @@ export default function Home() {
       ),
       label: "Illustration: Child Drinking Pure Water"
     },
-    {
-      title: <>Advanced RO & UV<br />Purification Systems</>,
-      sub: "International water purification technology designed to conform to WHO standards under one single roof.",
-      bullets: [
-        "Active copper & alkaline mineral filtration",
-        "Suitable for municipal, well, and tank water sources",
-        "Automatic smart flushing systems"
-      ],
-      ctaText: "Free Consultation",
-      ctaProduct: "RO System Consultation",
-      imageSrc: "/hero_slide_ro.png",
-      visual: (
-        <svg className="placeholder-illustration" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.25z"/></svg>
-      ),
-      label: "Illustration: Multi-Stage Filter Concept"
-    },
+
     {
       title: <>Laboratory Certified<br />Water Analysis</>,
       sub: "Identify chemical imbalances, bacteria content, and precise TDS count to deploy correct filter configurations.",
@@ -69,17 +119,17 @@ export default function Home() {
 
   const testimonials = [
     {
-      text: "The experience with Dr. Water Care team is superior. We had them install a Gov. school purification system and the water laboratory report shows pristine results. Their dedication to schedule execution is remarkable.",
+      text: "The experience with the Aqua Solve Water Clinic team is superior. We had them install a Gov. school purification system and the water laboratory report shows pristine results. Their dedication to schedule execution is remarkable.",
       author: "Mr. Prasanth IAS",
       role: "Kozhikode Regional Advisor"
     },
     {
-      text: "To provide sustainable solutions with enduring commitment requires expert execution. Dr. Water Care designs outstanding custom RO plants. They maintain high-quality parameters and fast replacement support.",
+      text: "To provide sustainable solutions with enduring commitment requires expert execution. Aqua Solve Water Clinic designs outstanding custom RO plants. They maintain high-quality parameters and fast replacement support.",
       author: "Dr. Manoj",
       role: "Chief Clinical Director, Calicut"
     },
     {
-      text: "Our home groundwater had massive scaling and iron particles. The HydroSoft Softener from Dr. Water Care completely transformed the hardness. Outstanding plumbing team, neat work, and no more scaling!",
+      text: "Our home groundwater had massive scaling and iron particles. The HydroSoft Softener from Aqua Solve Water Clinic completely transformed the hardness. Outstanding plumbing team, neat work, and no more scaling!",
       author: "Mrs. Anjali K.",
       role: "Homeowner, Eranhipaalam"
     },
@@ -89,7 +139,7 @@ export default function Home() {
       role: "Businessman"
     },
     {
-      text: "Thank you for the quick response. I want to let you know that I really appreciate the great customer assistance at Dr. Water Care.",
+      text: "Thank you for the quick response. I want to let you know that I really appreciate the great customer assistance at Aqua Solve Water Clinic.",
       author: "Salman",
       role: "Doctor"
     },
@@ -197,8 +247,6 @@ export default function Home() {
                           </button>
                           {index === 0 ? (
                             <Link href="/about" className="btn btn-secondary">Learn More</Link>
-                          ) : index === 1 ? (
-                            <Link href="/products" className="btn btn-secondary">Browse Catalog</Link>
                           ) : (
                             <Link href="/services" className="btn btn-secondary">Book Lab Test</Link>
                           )}
@@ -252,7 +300,7 @@ export default function Home() {
             </div>
             <div className="mv-info">
               <h3>Our Vision</h3>
-              <p>To be the No. 1 water purification organization in Kerala with a high standard of integrity, delivering continuous wellness through clear, purified water.</p>
+              <p>To be a trusted leader in water treatment solutions, recognized for excellence, innovation and commitment to a sustainable tomorrow.</p>
             </div>
           </div>
           <div className="mv-card mission">
@@ -261,87 +309,105 @@ export default function Home() {
             </div>
             <div className="mv-info">
               <h3>Our Mission</h3>
-              <p>To provide sustainable, enduring purification solutions by delivering superior products, customized system parameters, and reliable local support.</p>
+              <p>To deliver reliable, cost-effective and environmentally responsible water treatment solutions that ensure clean water, regulatory compliance and long-term value for our clients.</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* ==========================================================================
-           WHY DR. WATER CARE
+           WHY CHOOSE AQUASOLVE (GRID)
            ========================================================================== */}
-      <section className="section">
+      <section className="section" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
         <div className="container">
-          <div className="section-header animate-on-scroll">
-            <h2>Why Dr. Water Care?</h2>
-            <p>We combine premium machinery, extensive laboratory verification, and unmatched support to satisfy your purification needs under one roof.</p>
+          
+          <div className="why-choose-section-box animate-on-scroll">
+            
+            {/* Top Banner Header */}
+            <div className="why-choose-banner-header">
+              <h3>&middot; WHY CHOOSE AQUASOLVE? &middot;</h3>
+            </div>
+
+            <div className="why-choose-grid">
+              
+              {/* 1. EXPERIENCED TEAM */}
+              <div className="why-choose-card">
+                <div className="wc-icon-circle wc-circle-teal">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <div className="wc-content">
+                  <h4>EXPERIENCED TEAM</h4>
+                  <p>Skilled professionals with deep domain knowledge and hands-on experience.</p>
+                </div>
+              </div>
+
+              {/* 2. CUSTOMIZED SOLUTIONS */}
+              <div className="why-choose-card">
+                <div className="wc-icon-circle wc-circle-blue">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                </div>
+                <div className="wc-content">
+                  <h4>CUSTOMIZED SOLUTIONS</h4>
+                  <p>Tailor-made systems to meet your specific requirements and site conditions.</p>
+                </div>
+              </div>
+
+              {/* 3. QUALITY ASSURANCE */}
+              <div className="why-choose-card">
+                <div className="wc-icon-circle wc-circle-teal">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="6"></circle>
+                    <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path>
+                    <path d="M9 8l2 2 4-4"></path>
+                  </svg>
+                </div>
+                <div className="wc-content">
+                  <h4>QUALITY ASSURANCE</h4>
+                  <p>High-quality components and strict testing at every stage of execution.</p>
+                </div>
+              </div>
+
+              {/* 4. ON-TIME DELIVERY */}
+              <div className="why-choose-card">
+                <div className="wc-icon-circle wc-circle-blue">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div className="wc-content">
+                  <h4>ON-TIME DELIVERY</h4>
+                  <p>Strong project management ensuring timely delivery and smooth execution.</p>
+                </div>
+              </div>
+
+              {/* 5. AFTER-SALES SUPPORT */}
+              <div className="why-choose-card why-choose-full-width">
+                <div className="wc-icon-circle wc-circle-teal">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                  </svg>
+                </div>
+                <div className="wc-content">
+                  <h4>AFTER-SALES SUPPORT</h4>
+                  <p>Dedicated support team for operation, maintenance and long-term reliability.</p>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
-          <div className="why-us-grid">
-            <div className="feature-card animate-on-scroll">
-              <div className="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-              </div>
-              <h3>Leaders in Purification</h3>
-              <p>International filter technologies and high-quality membranes conforming to strict WHO standards.</p>
-            </div>
-
-            <div className="feature-card animate-on-scroll">
-              <div className="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0-2-.9-2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
-              </div>
-              <h3>Wide Range</h3>
-              <p>A broad array of purifiers including RO, UV, UF, domestic softeners, sand filters, and commercial plants.</p>
-            </div>
-
-            <div className="feature-card animate-on-scroll">
-              <div className="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/></svg>
-              </div>
-              <h3>One Stop Shop</h3>
-              <p>Get water analysis, filter assembly, delivery, plumbing installation, and servicing from one team.</p>
-            </div>
-
-            <div className="feature-card animate-on-scroll">
-              <div className="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-              </div>
-              <h3>Customised Solutions</h3>
-              <p>Our engineers adjust membrane sizing and active carbons to align with the specific chemical footprint of your source.</p>
-            </div>
-
-            <div className="feature-card animate-on-scroll">
-              <div className="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zm-6 12H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm14 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v-2h2v-2z"/></svg>
-              </div>
-              <h3>Multi-Industry Application</h3>
-              <p>Heavy-duty setups crafted for clinics, colleges, commercial kitchens, apartments, and production plants.</p>
-            </div>
-
-            <div className="feature-card animate-on-scroll">
-              <div className="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 8c-.83 0-1.5-.67-1.5-1.5S4.67 5 5.5 5 7 5.67 7 6.5 6.33 8 5.5 8z"/></svg>
-              </div>
-              <h3>Unique Offering</h3>
-              <p>Discover space-saving combo models containing filters, high-capacity coolers, and stainless steel reservoirs all in one.</p>
-            </div>
-
-            <div className="feature-card animate-on-scroll">
-              <div className="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-              </div>
-              <h3>Water Quality Test</h3>
-              <p>In-house chemical test services analyzing mineral densities, organic matter, and acidic balances.</p>
-            </div>
-
-            <div className="feature-card animate-on-scroll">
-              <div className="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              </div>
-              <h3>Kerala Service Network</h3>
-              <p>Our rapid technicians support clients across Kozhikode district, keeping your setups running 24/7.</p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -350,21 +416,38 @@ export default function Home() {
            ========================================================================== */}
       <section className="section section-bg">
         <div className="container">
-          <div className="grid-2">
-            <div className="animate-on-scroll">
-              <h2 style={{ fontSize: '2.2rem', marginBottom: '1.5rem' }}>About Dr. Water Care</h2>
-              <p style={{ color: 'var(--text-light)', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
-                Dr. Water Care, based in Kozhikode, is a leading Water Treatment Company in Kerala. We specialize in engineering and executing high-standard water solutions for domestic, commercial, and industrial requirements.
-              </p>
-              <p style={{ color: 'var(--text-light)', marginBottom: '2rem', fontSize: '0.95rem' }}>
-                Our product line includes top-tier Aqua Gold water purifiers, reverse osmosis plants, wastewater treatment utilities, softeners, and iron removal structures. With a team of highly-trained chemical engineers and service specialists, we maintain quality standards across installation and after-sales service.
-              </p>
-              <Link href="/about" className="btn btn-primary">More Details</Link>
+          <div className="about-preview-wrapper">
+            
+            {/* Mobile Header (Shown 1st on mobile) */}
+            <h2 className="about-preview-title about-title-mobile animate-on-scroll">
+              About Aqua Solve Water Clinic
+            </h2>
+
+            <div className="about-preview-grid">
+              
+              {/* Text & Button (Desktop Left Column / Mobile 3rd & 4th) */}
+              <div className="about-text-column animate-on-scroll">
+                <h2 className="about-preview-title about-title-desktop">
+                  About Aqua Solve Water Clinic
+                </h2>
+                <p className="about-preview-desc-1">
+                  Aqua Solve Water Clinic, based in Kozhikode, is a leading Water Treatment Company in Kerala. We specialize in engineering and executing high-standard water solutions for domestic, commercial, and industrial requirements.
+                </p>
+                <p className="about-preview-desc-2">
+                  Our product line includes top-tier Aqua Gold water purifiers, reverse osmosis plants, wastewater treatment utilities, softeners, and iron removal structures. With a team of highly-trained chemical engineers and service specialists, we maintain quality standards across installation and after-sales service.
+                </p>
+                <div className="about-btn-wrap">
+                  <Link href="/about" className="btn btn-primary">More Details</Link>
+                </div>
+              </div>
+
+              {/* Image (Desktop Right Column / Mobile 2nd) */}
+              <div className="about-image-column animate-on-scroll">
+                <img src="/about_splash_water.jpg" alt="Fresh Splashing Glasses of Water" className="about-preview-img" />
+              </div>
+
             </div>
 
-            <div className="animate-on-scroll">
-              <img src="/about_splash_water.jpg" alt="Fresh Splashing Glasses of Water" className="slide-image" />
-            </div>
           </div>
         </div>
       </section>
@@ -381,88 +464,262 @@ export default function Home() {
 
           <div className="products-grid">
             {/* Product 1 */}
-            <div className="product-card animate-on-scroll">
-              <div className="product-image-area">
-                <span className="product-tag">Best Seller</span>
-                <img src="/product-placeholder.png" alt="Aqua Gold UV Open Flow" className="product-image" />
-              </div>
-              <div className="product-info">
-                <h3>Aqua Gold UV Open Flow</h3>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-light)' }}>Efficient double-stage UV filtration system designed for immediate, high-volume purified tap flow.</p>
-                <ul className="product-specs">
-                  <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Capacity: 60 L/Hr</li>
-                  <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Sterilization: Double UV-C</li>
-                </ul>
-                <div className="product-footer">
-                  <span className="product-price">Request Quote</span>
-                  <button className="btn btn-primary btn-card" onClick={() => openModal('Aqua Gold UV Open Flow')}>Get Details</button>
+            <Link href="/products/9" className="product-card-link animate-on-scroll">
+              <div className="product-card">
+                <div className="product-image-area">
+                  <span className="product-tag" style={{ background: '#092f56' }}>Dual Mode</span>
+                  <img src="/product_puroaqua_black.jpg" alt="Puroaqua Dual Mode (Black)" className="product-image" />
+                </div>
+                <div className="product-info">
+                  <h3>Puroaqua Dual Mode (Black)</h3>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-light)' }}>6-Stage Advanced Purification system with Dual-Mode toggle. RO+UF+ALK for high TDS well water, and SN+UF+ALK for municipal flow.</p>
+                  <ul className="product-specs">
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Ideal for: High &amp; Low TDS Water</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Enrichment: Alkaline pH balancer</li>
+                  </ul>
+                  <div className="product-footer">
+                    <span className="product-price">₹14,500</span>
+                    <button 
+                      className="btn btn-primary btn-card" 
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation(); 
+                        openModal('Puroaqua Dual Mode (Black)'); 
+                      }}
+                    >
+                      Enquire Now
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Product 2 */}
-            <div className="product-card animate-on-scroll">
-              <div className="product-image-area">
-                <span className="product-tag">Premium</span>
-                <img src="/product-placeholder.png" alt="Aqua Gold Premium RO" className="product-image" />
-              </div>
-              <div className="product-info">
-                <h3>Aqua Gold Premium RO</h3>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-light)' }}>Multi-stage RO, UV, & UF treatment setup. Filters solid chemicals and adjusts mineral balance.</p>
-                <ul className="product-specs">
-                  <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Tank: 12 Litres</li>
-                  <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Features: Auto-TDS adjust</li>
-                </ul>
-                <div className="product-footer">
-                  <span className="product-price">Request Quote</span>
-                  <button className="btn btn-primary btn-card" onClick={() => openModal('Aqua Gold Premium RO')}>Get Details</button>
+            <Link href="/products/10" className="product-card-link animate-on-scroll">
+              <div className="product-card">
+                <div className="product-image-area">
+                  <span className="product-tag" style={{ background: '#092f56' }}>Dual Mode</span>
+                  <img src="/product_puroaqua_white.jpg" alt="Puroaqua Dual Mode (White)" className="product-image" />
+                </div>
+                <div className="product-info">
+                  <h3>Puroaqua Dual Mode (White)</h3>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-light)' }}>6-Stage Advanced Purification system with Dual-Mode toggle. RO+UF+ALK for high TDS well water, and SN+UF+ALK for municipal flow.</p>
+                  <ul className="product-specs">
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Ideal for: High &amp; Low TDS Water</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Enrichment: Alkaline pH balancer</li>
+                  </ul>
+                  <div className="product-footer">
+                    <span className="product-price">₹14,500</span>
+                    <button 
+                      className="btn btn-primary btn-card" 
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation(); 
+                        openModal('Puroaqua Dual Mode (White)'); 
+                      }}
+                    >
+                      Enquire Now
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Product 3 */}
-            <div className="product-card animate-on-scroll">
-              <div className="product-image-area">
-                <span className="product-tag">New</span>
-                <img src="/product-placeholder.png" alt="HydroSoft Softener" className="product-image" />
-              </div>
-              <div className="product-info">
-                <h3>HydroSoft Softener</h3>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-light)' }}>Removes high levels of calcium, magnesium, and scaling elements. Keeps skin, hair, and pipes safe.</p>
-                <ul className="product-specs">
-                  <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Operation: Auto Regeneration</li>
-                  <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Scope: Entire Villa / Flat</li>
-                </ul>
-                <div className="product-footer">
-                  <span className="product-price">Request Quote</span>
-                  <button className="btn btn-primary btn-card" onClick={() => openModal('HydroSoft Softener')}>Get Details</button>
+            <Link href="/products/12" className="product-card-link animate-on-scroll">
+              <div className="product-card">
+                <div className="product-image-area">
+                  <span className="product-tag">Carbon Filter</span>
+                  <img src="/product_frp_vessel.png" alt="Aqua Solve Carbon Filter" className="product-image" />
+                </div>
+                <div className="product-info">
+                  <h3>Aqua Solve Carbon Filter</h3>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-light)' }}>High-grade activated carbon filter. Adsorbs chlorine, organic pesticides, bad taste, odor, and chemical impurities from supply water.</p>
+                  <ul className="product-specs">
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Vessel: FRP pressure tank</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Service: Simple backwash routine</li>
+                  </ul>
+                  <div className="product-footer">
+                    <span className="product-price">₹30,000</span>
+                    <button 
+                      className="btn btn-primary btn-card" 
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation(); 
+                        openModal('Aqua Solve Carbon Filter'); 
+                      }}
+                    >
+                      Enquire Now
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Product 4 */}
-            <div className="product-card animate-on-scroll">
-              <div className="product-image-area">
-                <span className="product-tag">Heavy Duty</span>
-                <img src="/product-placeholder.png" alt="Commercial RO Plant" className="product-image" />
-              </div>
-              <div className="product-info">
-                <h3>Commercial RO Plant</h3>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-light)' }}>Industrial configuration featuring multiple filters, high pressure pumps, and large scale outputs.</p>
-                <ul className="product-specs">
-                  <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Flow Rate: 250 LPH to 5 KPH</li>
-                  <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Structure: Stainless Steel Frame</li>
-                </ul>
-                <div className="product-footer">
-                  <span className="product-price">Request Quote</span>
-                  <button className="btn btn-primary btn-card" onClick={() => openModal('Commercial RO Plant')}>Get Details</button>
+            <Link href="/products/4" className="product-card-link animate-on-scroll">
+              <div className="product-card">
+                <div className="product-image-area">
+                  <span className="product-tag">Heavy Duty</span>
+                  <img src="/product_commercial_ro.png" alt="Aqua Solve Commercial RO Treatment Plant" className="product-image" />
+                </div>
+                <div className="product-info">
+                  <h3>Aqua Solve Commercial RO Treatment Plant</h3>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-light)' }}>Industrial configuration featuring multiple filters, high pressure pumps, and large scale outputs.</p>
+                  <ul className="product-specs">
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Flow Rate: 250 LPH to 5 KPH</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Structure: Stainless Steel Frame</li>
+                  </ul>
+                  <div className="product-footer">
+                    <span className="product-price">Get Quote</span>
+                    <button 
+                      className="btn btn-primary btn-card" 
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation(); 
+                        openModal('Aqua Solve Commercial RO Treatment Plant'); 
+                      }}
+                    >
+                      Enquire Now
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
           
           <div style={{ textAlign: 'center', marginTop: '3.5rem' }} className="animate-on-scroll">
             <Link href="/products" className="btn btn-secondary">Explore All Products</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ==========================================================================
+           KEY INDUSTRIES
+           ========================================================================== */}
+      <section className="section key-industries-section" aria-label="Key Industries Served">
+        <div className="container">
+          <div className="section-header animate-on-scroll text-center">
+            <div className="title-with-lines">
+              <span className="bullet">•</span>
+              <h2>KEY INDUSTRIES</h2>
+              <span className="bullet">•</span>
+            </div>
+            <p style={{ maxWidth: '650px', margin: '0.5rem auto 0 auto' }}>Providing custom water treatment plants, RO filtration systems, and softeners for various sectors.</p>
+          </div>
+
+          <div className="industries-grid">
+            {/* Industry 1 */}
+            <div className="industry-card animate-on-scroll">
+              <div className="industry-header">
+                <div className="industry-icon-circle">
+                  <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+                </div>
+                <h3>HOTELS & RESORTS</h3>
+                <p>Reliable water treatment for luxury stays, kitchens, laundry and recreational facilities.</p>
+              </div>
+              <div className="industry-image-wrapper">
+                <img src="/industry_hotel.png" alt="Hotels & Resorts" />
+              </div>
+            </div>
+
+            {/* Industry 2 */}
+            <div className="industry-card animate-on-scroll">
+              <div className="industry-header">
+                <div className="industry-icon-circle">
+                  <svg viewBox="0 0 24 24"><path d="M19 10.5h-5.5V5h-3v5.5H5v3h5.5V19h3v-5.5H19v-3z"/></svg>
+                </div>
+                <h3>HOSPITALS & CLINICS</h3>
+                <p>Safe, clean and hygienic water for critical applications and infection control.</p>
+              </div>
+              <div className="industry-image-wrapper">
+                <img src="/industry_hospital.png" alt="Hospitals & Clinics" />
+              </div>
+            </div>
+
+            {/* Industry 3 */}
+            <div className="industry-card animate-on-scroll">
+              <div className="industry-header">
+                <div className="industry-icon-circle">
+                  <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zm-6 12H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm14 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v-2h2v-2z"/></svg>
+                </div>
+                <h3>APARTMENTS & BUILDINGS</h3>
+                <p>Sustainable water solutions for daily needs, domestic use and facility management.</p>
+              </div>
+              <div className="industry-image-wrapper">
+                <img src="/industry_apartment.png" alt="Apartments & Commercial Buildings" />
+              </div>
+            </div>
+
+            {/* Industry 4 */}
+            <div className="industry-card animate-on-scroll">
+              <div className="industry-header">
+                <div className="industry-icon-circle">
+                  <svg viewBox="0 0 24 24"><path d="M22 10l-6 4V9l-6 4V9L2 14v6h20V10z"/></svg>
+                </div>
+                <h3>INDUSTRIES & FACTORIES</h3>
+                <p>Efficient water treatment for process requirements, reuse and regulatory compliance.</p>
+              </div>
+              <div className="industry-image-wrapper">
+                <img src="/industry_factory.png" alt="Industries & Factories" />
+              </div>
+            </div>
+
+            {/* Industry 5 */}
+            <div className="industry-card animate-on-scroll">
+              <div className="industry-header">
+                <div className="industry-icon-circle">
+                  <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                </div>
+                <h3>SCHOOLS & COLLEGES</h3>
+                <p>Ensuring safe drinking water and a healthy environment for students and staff.</p>
+              </div>
+              <div className="industry-image-wrapper">
+                <img src="/industry_school.png" alt="Schools & Colleges" />
+              </div>
+            </div>
+
+            {/* Industry 6 */}
+            <div className="industry-card animate-on-scroll">
+              <div className="industry-header">
+                <div className="industry-icon-circle">
+                  <svg viewBox="0 0 24 24"><path d="M15 11V5l-3-3-3 3v2H3v14h18V11h-6zm-8 8H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm6 8h-2v-2h2v-2zm0-4h-2v-2h2v-2zm0-4h-2v-2h2v-2zm0-4h-2V5h2v2zm6 12h-2v-2h2v-2zm0-4h-2v-2h2v-2z"/></svg>
+                </div>
+                <h3>IT PARKS & OFFICES</h3>
+                <p>High-quality water solutions for large facilities, cooling systems and pantries.</p>
+              </div>
+              <div className="industry-image-wrapper">
+                <img src="/industry_office.png" alt="IT Parks & Offices" />
+              </div>
+            </div>
+
+            {/* Industry 7 */}
+            <div className="industry-card animate-on-scroll">
+              <div className="industry-header">
+                <div className="industry-icon-circle">
+                  <svg viewBox="0 0 24 24"><path d="M12 2L2 7v2h20V7L12 2zm-7 9h2v8H5v-8zm5 0h2v8h-2v-8zm5 0h2v8h-2v-8zm5 0h2v8h-2v-8zM2 21h20v2H2v-2z"/></svg>
+                </div>
+                <h3>GOVERNMENT ORGANIZATIONS</h3>
+                <p>Compliant and dependable systems for public utilities, institutions and civic needs.</p>
+              </div>
+              <div className="industry-image-wrapper">
+                <img src="/industry_government.png" alt="Government Organizations" />
+              </div>
+            </div>
+
+            {/* Industry 8 */}
+            <div className="industry-card animate-on-scroll">
+              <div className="industry-header">
+                <div className="industry-icon-circle">
+                  <svg viewBox="0 0 24 24"><path d="M13 19h-2v-5.69c-2.35-.42-4-2.48-4-4.81 0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.33-1.65 4.39-4 4.81V19zm-1-12c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                </div>
+                <h3>RESORTS & LEISURE SPACES</h3>
+                <p>Tailored solutions for swimming pools, landscaping, and guest comfort needs.</p>
+              </div>
+              <div className="industry-image-wrapper">
+                <img src="/industry_leisure.png" alt="Resorts & Leisure Spaces" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -474,7 +731,7 @@ export default function Home() {
         <div className="container">
           <div className="section-header animate-on-scroll">
             <h2>Testimonials</h2>
-            <p>Read opinions and feedback from clients who trust Dr. Water Care for their hydration safety.</p>
+            <p>Read opinions and feedback from clients who trust Aqua Solve Water Clinic for their hydration safety.</p>
           </div>
 
           <div 
@@ -531,12 +788,14 @@ export default function Home() {
               {[
                 '/client-logo-1.png',
                 '/client-logo-2.png',
-                '/client-logo-3.png',
+                '/client-seashell.png',
+                '/client-copper-kitchen.png',
                 '/client-logo-4.png',
                 '/client-logo-5.png',
                 '/client-logo-1.png',
                 '/client-logo-2.png',
-                '/client-logo-3.png',
+                '/client-seashell.png',
+                '/client-copper-kitchen.png',
                 '/client-logo-4.png'
               ].map((logo, idx) => (
                 <div key={idx} className="logo-carousel-item">

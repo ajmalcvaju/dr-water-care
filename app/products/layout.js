@@ -1,7 +1,7 @@
 export const metadata = {
-  title: 'Our Products | Dr. Water Care Kozhikode - RO, UV, Softeners & Commercial Plants',
-  description: 'Explore our complete catalog of Aqua Gold RO systems, UV sterilizers, domestic water softeners, iron filters, and commercial filtration plants in Calicut, Kerala.',
-  keywords: 'Aqua Gold UV Open Flow, Domestic RO Calicut, Water Softeners Kozhikode, Iron removal filters Kerala, Commercial water plants',
+  title: 'Our Products | Aqua Solve Water Clinic Kozhikode - RO, Water Filters & Treatment Plants',
+  description: 'Explore our complete catalog of Puroaqua Dual Mode RO purifiers, media vessel filters, and commercial treatment plants (STP/ETP/RO) in Kozhikode, Kerala.',
+  keywords: 'Puroaqua Dual Mode RO, Water Filters Kozhikode, Sediment Filter Calicut, Iron Remover Kerala, Carbon filter, Sewage Treatment Plants, Effluent Treatment, Commercial RO Calicut',
 };
 
 export default function ProductsLayout({ children }) {

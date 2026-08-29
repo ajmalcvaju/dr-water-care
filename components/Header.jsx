@@ -39,15 +39,18 @@ export default function Header() {
       {/* Top Contact Bar */}
       <div className="top-bar">
         <div className="container top-bar-content">
-          <div class="top-left-info">
+          <div className="top-left-info">
             <span className="iso-badge">ISO 9001:2015 CERTIFIED</span>
             <span>AN ISO 9001:2015 CERTIFIED COMPANY</span>
           </div>
           <div className="top-right-info">
-            <a href="tel:+917012620021" className="top-link" id="headerPhoneLink">
+            <span className="top-link" id="headerPhoneLink">
               <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-              Customer Support: 070126 20021
-            </a>
+              Contact:&nbsp;
+              <a href="tel:+919497150452" style={{ color: 'inherit', textDecoration: 'none' }}>94971 50452</a>
+              &nbsp;/&nbsp;
+              <a href="tel:+919846253025" style={{ color: 'inherit', textDecoration: 'none' }}>98462 53025</a>
+            </span>
             <button 
               className="btn btn-primary btn-card" 
               onClick={() => openModal('General Consultation')}
@@ -63,8 +66,7 @@ export default function Header() {
       <div className="container">
         <nav className="main-nav">
           <Link href="/" className="logo" id="logoLink" onClick={closeMenu}>
-            <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-            Dr.Water <span>Care</span>
+            <img src="/aqua_solve.png" alt="Aqua Solve Water Clinic Logo" className="logo-img" />
           </Link>
           
           <button 

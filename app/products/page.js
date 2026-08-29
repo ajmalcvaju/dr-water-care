@@ -10,102 +10,127 @@ export default function Products() {
 
   const productsList = [
     {
-      id: 1,
-      title: "Aqua Gold UV Open Flow",
-      category: "uv-purifiers",
-      tag: "Best Seller",
-      desc: "Double UV-C chambers in heavy food-grade casing. Direct fast-flow tap supply without water wastage.",
+      id: 6,
+      title: "Aqua Solve Sediment Filter",
+      category: "filters",
+      tag: "Sediment Filter",
+      price: "₹28,000",
+      desc: "Premium heavy-duty sand and sediment media filter vessel. Removes dust, silt, clay, mud, and all suspended particles from incoming water supply.",
       specs: [
-        "Flow Capacity: 60 L/Hr",
-        "Filtration: Dual Sediment + UV",
-        "Power Supply: 24V DC SMPS"
-      ]
+        "Vessel: FRP pressure tank",
+        "Operation: Multiport Valve",
+        "Service: Easy manual backwash"
+      ],
+      imageSrc: "/product_frp_vessel.png"
     },
     {
-      id: 2,
-      title: "Aqua Gold Premium RO",
-      category: "domestic-ro",
-      tag: "Premium",
-      desc: "Multi-stage RO, UV & UF purifier with copper mineralizer. Best for municipal and tank sources with high TDS.",
+      id: 11,
+      title: "Aqua Solve Iron Remover Filter",
+      category: "filters",
+      tag: "Iron Remover",
+      price: "₹29,000",
+      desc: "Specialized catalytic manganese dioxide media filter. Oxidizes and filters dissolved ferrous iron, manganese, and sulphur odor.",
       specs: [
-        "Storage Tank: 12 Litres",
-        "Stages: 8 Stage Filtration",
-        "TDS Reducer: Up to 95%"
-      ]
+        "Vessel: FRP pressure tank",
+        "Operation: Multiport Valve",
+        "Service: Periodic backwash & rinse"
+      ],
+      imageSrc: "/product_frp_vessel.png"
     },
     {
-      id: 3,
-      title: "HydroSoft Softener",
-      category: "softeners",
-      tag: "Whole House",
-      desc: "Premium food-grade ion exchange resin vessel. Neutralizes scaling minerals to shield pipes, skin, and laundry.",
+      id: 12,
+      title: "Aqua Solve Carbon Filter",
+      category: "filters",
+      tag: "Carbon Filter",
+      price: "₹30,000",
+      desc: "High-grade activated carbon filter. Adsorbs chlorine, organic pesticides, bad taste, odor, and chemical impurities from supply water.",
       specs: [
-        "Flow Rate: 1000 L/Hr",
-        "Control: Automatic Valve",
-        "Regeneration: Salt-Brine tank"
-      ]
+        "Vessel: FRP pressure tank",
+        "Operation: Multiport Valve",
+        "Service: Simple backwash routine"
+      ],
+      imageSrc: "/product_frp_vessel.png"
+    },
+    {
+      id: 9,
+      title: "Puroaqua Dual Mode (Black)",
+      category: "domestic",
+      tag: "Dual Mode",
+      price: "₹14,500",
+      desc: "6-Stage Advanced Purification system featuring dual-mode filtration. Mode 1 (RO+UF+ALK) removes TDS, salts, and heavy metals from high TDS borewell water. Mode 2 (SN+UF+ALK) blocks dust, rust, and bacteria from low TDS/municipal supply.",
+      specs: [
+        "Purification: Dual Mode (RO / SN)",
+        "Stages: 6 Stage Advanced",
+        "Enrichment: Alkaline + UF",
+        "Storage: 10 Litre Food-Grade Tank"
+      ],
+      imageSrc: "/product_puroaqua_black.jpg"
+    },
+    {
+      id: 10,
+      title: "Puroaqua Dual Mode (White)",
+      category: "domestic",
+      tag: "Dual Mode",
+      price: "₹14,500",
+      desc: "6-Stage Advanced Purification system featuring dual-mode filtration. Mode 1 (RO+UF+ALK) removes TDS, salts, and heavy metals from high TDS borewell water. Mode 2 (SN+UF+ALK) blocks dust, rust, and bacteria from low TDS/municipal supply.",
+      specs: [
+        "Purification: Dual Mode (RO / SN)",
+        "Stages: 6 Stage Advanced",
+        "Enrichment: Alkaline + UF",
+        "Storage: 10 Litre Food-Grade Tank"
+      ],
+      imageSrc: "/product_puroaqua_white.jpg"
     },
     {
       id: 4,
-      title: "Commercial RO Plant",
-      category: "commercial",
+      title: "Aqua Solve Commercial RO Treatment Plant",
+      category: "plants",
       tag: "Heavy Duty",
       desc: "Multi-port pre-filtration vessels coupled with high pressure steel pumps for colleges, clinics, and offices.",
       specs: [
         "Production: 250 Litres/Hr",
         "Media: Sand + Carbon + RO",
         "Structure: SS 304 skid frame"
-      ]
+      ],
+      imageSrc: "/product_commercial_ro.png"
     },
     {
-      id: 5,
-      title: "Aqua Pure Under-Sink RO",
-      category: "domestic-ro",
-      tag: "Modern",
-      desc: "Concealed space-saving water purifier. Placed beneath modular kitchen sinks with an elegant deck tap.",
+      id: 13,
+      title: "Aqua Solve Sewage Treatment Plant (STP)",
+      category: "plants",
+      tag: "Sewage Treatment",
+      desc: "Industrial and commercial STP plants engineered to treat domestic sewage efficiently. High efficiency bioreactor media ensures safe discharge or reuse parameters.",
       specs: [
-        "Storage Tank: 8L Hydrostatic",
-        "Valve: Chrome Goose-neck",
-        "Stages: 6 stage filtration"
-      ]
+        "Process: Screening to Disinfection",
+        "Vessels: MBR / MBBR Technology",
+        "Applications: Apartments, Malls, Resorts"
+      ],
+      imageSrc: "/stp_plant.png"
     },
     {
-      id: 6,
-      title: "Aqua Shield Iron Filter",
-      category: "softeners",
-      tag: "Iron Filter",
-      desc: "Contains catalytic Manganese Zeolite media. Removes metallic iron, odor, and reddish-brown staining.",
+      id: 14,
+      title: "Aqua Solve Effluent Treatment Plant (ETP)",
+      category: "plants",
+      tag: "Effluent Treatment",
+      desc: "Advanced industrial wastewater treatment setup designed for factories and manufacturing plants. Built-in Zero Liquid Discharge (ZLD) configurations.",
       specs: [
-        "Vessel: FRP pressure tank",
-        "Operation: Multiport Valve",
-        "Service: Semi-annual backwash"
-      ]
-    },
-    {
-      id: 7,
-      title: "Multi-Tap Cooler Purifier",
-      category: "commercial",
-      tag: "Cooler Combo",
-      desc: "Dual tap (Cold & Ambient) stainless steel storage. Built-in industrial filtration system for factories & showrooms.",
-      specs: [
-        "Cooling Reservoir: 80 Litres",
-        "Taps: 2 (Cold & Normal)",
-        "Cabinet: Full SS 304 food-grade"
-      ]
-    },
-    {
-      id: 8,
-      title: "Gravity UF Filter",
-      category: "uv-purifiers",
-      tag: "Eco Filter",
-      desc: "Non-electric gravity-fed double chamber filter. Hollow fiber UF membrane blocks cysts, dust, and micro-particles.",
-      specs: [
-        "Capacity: 20 Litres",
-        "Power: Zero Electricity",
-        "Maintenance: Easy DIY wash"
-      ]
+        "Process: pH to Settling & Filtration",
+        "Technology: Coagulation / Flocculation",
+        "Applications: Laundries, Factories, Dairies"
+      ],
+      imageSrc: "/etp_plant.png"
     }
   ];
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('category');
+      if (cat && ['domestic', 'filters', 'plants', 'all'].includes(cat)) {
+        setActiveFilter(cat);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -119,7 +144,7 @@ export default function Products() {
 
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [activeFilter]);
 
   const filteredProducts = activeFilter === 'all' 
     ? productsList 
@@ -156,38 +181,48 @@ export default function Products() {
           
           {/* Filter Tabs */}
           <div className="product-filters animate-on-scroll">
-            <button className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`} onClick={() => setActiveFilter('all')}>All Systems</button>
-            <button className={`filter-btn ${activeFilter === 'domestic-ro' ? 'active' : ''}`} onClick={() => setActiveFilter('domestic-ro')}>Domestic RO</button>
-            <button className={`filter-btn ${activeFilter === 'uv-purifiers' ? 'active' : ''}`} onClick={() => setActiveFilter('uv-purifiers')}>UV Purifiers</button>
-            <button className={`filter-btn ${activeFilter === 'softeners' ? 'active' : ''}`} onClick={() => setActiveFilter('softeners')}>Water Softeners</button>
-            <button className={`filter-btn ${activeFilter === 'commercial' ? 'active' : ''}`} onClick={() => setActiveFilter('commercial')}>Commercial Plants</button>
+            <button className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`} onClick={() => setActiveFilter('all')}>All Products</button>
+            <button className={`filter-btn ${activeFilter === 'domestic' ? 'active' : ''}`} onClick={() => setActiveFilter('domestic')}>Domestic Purifiers</button>
+            <button className={`filter-btn ${activeFilter === 'filters' ? 'active' : ''}`} onClick={() => setActiveFilter('filters')}>Water Filters</button>
+            <button className={`filter-btn ${activeFilter === 'plants' ? 'active' : ''}`} onClick={() => setActiveFilter('plants')}>Treatment Plants</button>
           </div>
 
           {/* Products Catalog Grid */}
           <div className="products-grid" style={{ minHeight: '400px' }}>
             {filteredProducts.map((product) => (
-              <div key={product.id} className="product-card animate-on-scroll" data-category={product.category}>
-                <div className="product-image-area">
-                  <span className="product-tag">{product.tag}</span>
-                  <img src="/product-placeholder.png" alt={product.title} className="product-image" />
-                </div>
-                <div className="product-info">
-                  <h3>{product.title}</h3>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-light)', marginBottom: '0.8rem' }}>{product.desc}</p>
-                  <ul className="product-specs">
-                    {product.specs.map((spec, idx) => (
-                      <li key={idx}>
-                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        {spec}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="product-footer">
-                    <span className="product-price">Get Quote</span>
-                    <button className="btn btn-primary btn-card" onClick={() => openModal(product.title)}>Enquire Now</button>
+              <Link key={product.id} href={`/products/${product.id}`} className="product-card-link animate-on-scroll">
+                <div className="product-card" data-category={product.category}>
+                  <div className="product-image-area">
+                    <span className="product-tag">{product.tag}</span>
+                    <img src={product.imageSrc || "/product-placeholder.png"} alt={product.title} className="product-image" />
+                  </div>
+                  <div className="product-info">
+                    <h3>{product.title}</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-light)', marginBottom: '0.8rem' }}>{product.desc}</p>
+                    <ul className="product-specs">
+                      {product.specs.map((spec, idx) => (
+                        <li key={idx}>
+                          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                          {spec}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="product-footer">
+                      <span className="product-price">{product.price || "Get Quote"}</span>
+                      <button 
+                        className="btn btn-primary btn-card" 
+                        onClick={(e) => { 
+                          e.preventDefault(); 
+                          e.stopPropagation(); 
+                          openModal(product.title); 
+                        }}
+                      >
+                        Enquire Now
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -217,44 +252,60 @@ export default function Products() {
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Aqua Gold Premium RO</strong></td>
-                  <td>Domestic RO</td>
-                  <td>Borewell / High TDS groundwater</td>
-                  <td>1500 PPM</td>
-                  <td>Yes (24V SMPS)</td>
-                  <td>Yes (Approx. 60%)</td>
+                  <td><strong>Puroaqua Dual Mode (Black / White)</strong></td>
+                  <td>Domestic RO / UF</td>
+                  <td>Flexible (Borewell & Municipal)</td>
+                  <td>1200 PPM (RO Mode)</td>
+                  <td>Yes (RO Mode) / Direct (SN Mode)</td>
+                  <td>RO Mode Only (Approx. 55%)</td>
                 </tr>
                 <tr>
-                  <td><strong>Aqua Gold UV Open Flow</strong></td>
-                  <td>UV Purifier</td>
-                  <td>Municipal / low TDS supply</td>
-                  <td>150 PPM</td>
-                  <td>Yes (Direct AC/DC)</td>
-                  <td>No waste water</td>
-                </tr>
-                <tr>
-                  <td><strong>Gravity UF Filter</strong></td>
-                  <td>UF Gravity</td>
-                  <td>Clear municipal supply</td>
-                  <td>120 PPM</td>
+                  <td><strong>Aqua Solve Sediment Filter</strong></td>
+                  <td>Sediment Filter</td>
+                  <td>Turbid / muddy well water</td>
+                  <td>Suspended Solids Only</td>
                   <td>No</td>
-                  <td>No waste water</td>
-                </tr>
-                <tr>
-                  <td><strong>HydroSoft Softener</strong></td>
-                  <td>Softener</td>
-                  <td>Hard well water (calcium scales)</td>
-                  <td>Hardness only (500 PPM)</td>
-                  <td>Yes (Control Head)</td>
                   <td>Backwash wash only</td>
                 </tr>
                 <tr>
-                  <td><strong>Commercial RO Plant</strong></td>
+                  <td><strong>Aqua Solve Iron Remover Filter</strong></td>
+                  <td>Iron Filter</td>
+                  <td>Reddish well water (metallic taste)</td>
+                  <td>Iron up to 5 PPM</td>
+                  <td>No</td>
+                  <td>Backwash wash only</td>
+                </tr>
+                <tr>
+                  <td><strong>Aqua Solve Carbon Filter</strong></td>
+                  <td>Carbon Filter</td>
+                  <td>Chlorinated / smelly supply water</td>
+                  <td>Chemicals & Odor Only</td>
+                  <td>No</td>
+                  <td>Backwash wash only</td>
+                </tr>
+                <tr>
+                  <td><strong>Aqua Solve Commercial RO Treatment Plant</strong></td>
                   <td>Commercial</td>
                   <td>Heavy industrial / community supply</td>
                   <td>2000 PPM</td>
                   <td>Yes (3-Phase option)</td>
                   <td>Yes (Approx. 50%)</td>
+                </tr>
+                <tr>
+                  <td><strong>Aqua Solve Sewage Treatment Plant (STP)</strong></td>
+                  <td>Commercial STP</td>
+                  <td>Domestic sewage / blackwater reuse</td>
+                  <td>Organic Load / Pathogens</td>
+                  <td>Yes (Blower & Pumps)</td>
+                  <td>MBR Sludge discharge</td>
+                </tr>
+                <tr>
+                  <td><strong>Aqua Solve Effluent Treatment Plant (ETP)</strong></td>
+                  <td>Commercial ETP</td>
+                  <td>Industrial chemical wastewater</td>
+                  <td>Chemical Load (ZLD)</td>
+                  <td>Yes (Aerators & Dosing)</td>
+                  <td>Sludge filter press</td>
                 </tr>
               </tbody>
             </table>

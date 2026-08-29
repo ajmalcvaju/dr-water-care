@@ -34,16 +34,36 @@ export default function QuoteModal() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API delay (1.5 seconds)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
+    const name = formData.name || 'Not specified';
+    const phone = formData.phone || 'Not specified';
+    const email = formData.email || 'Not specified';
+    const reqMessage = formData.message || 'No additional requirements specified';
+    const product = productName || 'General System';
 
-      // Auto close after 3 seconds
-      setTimeout(() => {
-        closeModal();
-      }, 3000);
-    }, 1500);
+    const text = `Hi Aqua Solve Water Clinic, I would like to Request a Quote / Callback.
+
+🛍️ *Inquiry Details:*
+• *Product/System:* ${product}
+• *Name:* ${name}
+• *Phone:* ${phone}
+• *Email:* ${email}
+• *Requirements:* ${reqMessage}`;
+
+    const whatsappUrl = `https://wa.me/919497150452?text=${encodeURIComponent(text)}`;
+
+    setSubmitSuccess(true);
+    setIsSubmitting(false);
+
+    if (typeof window !== 'undefined') {
+      const newWin = window.open(whatsappUrl, '_blank');
+      if (!newWin) {
+        window.location.href = whatsappUrl;
+      }
+    }
+
+    setTimeout(() => {
+      closeModal();
+    }, 2000);
   };
 
   return (

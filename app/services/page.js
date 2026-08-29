@@ -1,10 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useQuote } from '../../context/QuoteContext';
 
 export default function Services() {
+  const { openModal } = useQuote();
   const [activeFaq, setActiveFaq] = useState(null);
-  
+
   // Stateful Lab Booking Form
   const [formData, setFormData] = useState({
     name: '',
@@ -43,10 +46,29 @@ export default function Services() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API delay (1.5 seconds)
+    const name = formData.name || 'Not specified';
+    const phone = formData.phone || 'Not specified';
+    const source = formData.source || 'Open Well';
+    const location = formData.location || 'On-site Technician Visit (Kozhikode district only)';
+    const issues = formData.issues || 'None mentioned';
+
+    const text = `Hi Aqua Solve Water Clinic, I want to Schedule a Water Quality Analysis Test.
+
+📌 *Booking Details:*
+• *Name:* ${name}
+• *Phone:* ${phone}
+• *Water Source:* ${source}
+• *Testing Location:* ${location}
+• *Issues Observed:* ${issues}`;
+
+    const whatsappUrl = `https://wa.me/919497150452?text=${encodeURIComponent(text)}`;
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitSuccess(true);
+      if (typeof window !== 'undefined') {
+        window.open(whatsappUrl, '_blank');
+      }
       setFormData({
         name: '',
         phone: '',
@@ -55,11 +77,10 @@ export default function Services() {
         issues: ''
       });
 
-      // Hide success message after 6 seconds
       setTimeout(() => {
         setSubmitSuccess(false);
       }, 6000);
-    }, 1500);
+    }, 600);
   };
 
   const faqsList = [
@@ -77,7 +98,7 @@ export default function Services() {
     },
     {
       q: "Do you offer Annual Maintenance Contracts (AMC)?",
-      a: "Yes. Dr. Water Care offers structured, affordable domestic and commercial AMC packages. Our plans cover quarterly cleaning visits, filter swaps, pump audits, and priority free assistance for call-outs, saving you from heavy emergency repair bills."
+      a: "Yes. Aqua Solve Water Clinic offers structured, affordable domestic and commercial AMC packages. Our plans cover quarterly cleaning visits, filter swaps, pump audits, and priority free assistance for call-outs, saving you from heavy emergency repair bills."
     },
     {
       q: "What is the difference between RO and UV purification?",
@@ -109,69 +130,303 @@ export default function Services() {
       </section>
 
       {/* ==========================================================================
-           SERVICES DETAILS GRID
+           STP / ETP / WTP / WATER PURIFIER PLANT SHOWCASE (TOP)
            ========================================================================== */}
-      <section className="section">
+      <section className="section plant-showcase-section" aria-label="Water Treatment Plants Showcase">
         <div className="container">
-          <div className="services-detail-grid">
+          <div className="section-header animate-on-scroll text-center">
+            <h2>Industrial &amp; Commercial Plant Solutions</h2>
+            <p style={{ maxWidth: '650px', margin: '0.5rem auto 0 auto' }}>Heavy-duty treatment facilities engineered for optimal recycling, purification, and environmental compliance.</p>
+          </div>
+
+          <div className="plants-grid">
+            {/* 1st: Water Purifier */}
+            <Link href="/services/purifier" className="plant-card-link animate-on-scroll">
+              <div className="plant-card">
+                <div className="plant-tag tag-purifier">WATER PURIFIER</div>
+                <div className="plant-img-wrapper">
+                  <img src="/product_puroaqua_black.jpg" alt="Aqua Solve Water Purifier" />
+                </div>
+                <div className="plant-info">
+                  <p>Advanced domestic RO + UF + Alkaline water purifiers that deliver 100% pure, healthy drinking water.</p>
+                  <div className="plant-card-action">
+                    <span>View Specs &amp; Details</span> &rarr;
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* 2nd: WTP Plant */}
+            <Link href="/services/wtp" className="plant-card-link animate-on-scroll">
+              <div className="plant-card">
+                <div className="plant-tag tag-wtp">WTP PLANT</div>
+                <div className="plant-img-wrapper">
+                  <img src="/wtp_plant.png" alt="Water Treatment Plant (WTP)" />
+                </div>
+                <div className="plant-info">
+                  <p>Water Treatment Plants that deliver safe, clean &amp; potable water for various applications.</p>
+                  <div className="plant-card-action">
+                    <span>View Specs &amp; Details</span> &rarr;
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* 3rd: STP Plant */}
+            <Link href="/services/stp" className="plant-card-link animate-on-scroll">
+              <div className="plant-card">
+                <div className="plant-tag tag-stp">STP PLANT</div>
+                <div className="plant-img-wrapper">
+                  <img src="/stp_plant.png" alt="Sewage Treatment Plant (STP)" />
+                </div>
+                <div className="plant-info">
+                  <p>Sewage Treatment Plants that treat domestic sewage efficiently and enable safe discharge or reuse.</p>
+                  <div className="plant-card-action">
+                    <span>View Specs &amp; Details</span> &rarr;
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* 4th: ETP Plant */}
+            <Link href="/services/etp" className="plant-card-link animate-on-scroll">
+              <div className="plant-card">
+                <div className="plant-tag tag-etp">ETP PLANT</div>
+                <div className="plant-img-wrapper">
+                  <img src="/etp_plant.png" alt="Effluent Treatment Plant (ETP)" />
+                </div>
+                <div className="plant-info">
+                  <p>Effluent Treatment Plants designed to treat industrial wastewater and ensure zero liquid discharge solutions.</p>
+                  <div className="plant-card-action">
+                    <span>View Specs &amp; Details</span> &rarr;
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ==========================================================================
+           OUR CORE SERVICES GRID (8 CARDS)
+           ========================================================================== */}
+      <section className="section" style={{ paddingTop: '1.5rem', paddingBottom: '1rem' }}>
+        <div className="container">
+          
+          <div className="core-services-section-box animate-on-scroll">
             
-            {/* Service 1 */}
-            <div className="service-detail-card animate-on-scroll">
-              <div className="feature-icon-wrapper" style={{ width: '50px', height: '50px' }}>
-                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-              </div>
-              <h3>Water Quality Analysis</h3>
-              <p>Our Eranhipaalam chemical laboratory tests local groundwater parameters. We deliver precise metrics outlining pH levels, TDS count, iron concentration, chlorine content, and biological bacteria count.</p>
-              <ul className="service-features-list">
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> On-Site extraction or Lab drop-off</li>
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Complete chemical parameter report</li>
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Filter configuration guidance</li>
-              </ul>
+            {/* Top Banner Header */}
+            <div className="core-services-banner-header">
+              <h3>&middot; OUR CORE SERVICES &middot;</h3>
             </div>
 
-            {/* Service 2 */}
-            <div className="service-detail-card animate-on-scroll">
-              <div className="feature-icon-wrapper" style={{ width: '50px', height: '50px' }}>
-                <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            <div className="core-services-grid">
+              
+              {/* 1. DESIGN & ENGINEERING */}
+              <div className="core-service-card">
+                <div className="cs-icon-circle cs-circle-navy">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                    <path d="M7 8h5"></path>
+                    <path d="M7 11h3"></path>
+                    <circle cx="16" cy="10" r="2.5"></circle>
+                  </svg>
+                </div>
+                <h4 className="cs-card-title cs-title-navy">DESIGN &amp; ENGINEERING</h4>
+                <p className="cs-card-desc">Customized, cost-effective and efficient designs using latest technology and industry standards.</p>
               </div>
-              <h3>Installation & Setup</h3>
-              <p>Our experienced plumbers execute seamless setups of under-sink ROs, whole-house softeners, and commercial filtration towers. We verify water inlet pressures and execute proper reject drain lines.</p>
-              <ul class="service-features-list">
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Pressure-valve optimization</li>
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Neat plumbing and food-grade tubes</li>
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Post-install water purity audit</li>
-              </ul>
-            </div>
 
-            {/* Service 3 */}
-            <div className="service-detail-card animate-on-scroll">
-              <div className="feature-icon-wrapper" style={{ width: '50px', height: '50px' }}>
-                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/></svg>
+              {/* 2. SUPPLY OF PLANTS */}
+              <div className="core-service-card">
+                <div className="cs-icon-circle cs-circle-teal">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="4" y="6" width="6" height="14" rx="3"></rect>
+                    <rect x="14" y="6" width="6" height="14" rx="3"></rect>
+                    <path d="M7 2v4"></path>
+                    <path d="M17 2v4"></path>
+                    <path d="M10 11h4"></path>
+                  </svg>
+                </div>
+                <h4 className="cs-card-title cs-title-teal">SUPPLY OF PLANTS</h4>
+                <p className="cs-card-desc">High quality, durable and performance-tested equipment from trusted manufacturers and partners.</p>
               </div>
-              <h3>Annual Maintenance Contract (AMC)</h3>
-              <p>Avoid sudden filtration downtime. Our structured domestic and business AMC plans include scheduled quarterly visits, carbon checks, membrane pressure washes, and pre-filter swap allocations.</p>
-              <ul class="service-features-list">
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Scheduled quarterly service visits</li>
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Free replacement of sediment cartridges</li>
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> High priority emergency response</li>
-              </ul>
-            </div>
 
-            {/* Service 4 */}
-            <div className="service-detail-card animate-on-scroll">
-              <div className="feature-icon-wrapper" style={{ width: '50px', height: '50px' }}>
-                <svg viewBox="0 0 24 24"><path d="M22 24H2v-2h20v2zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              {/* 3. INSTALLATION & COMMISSIONING */}
+              <div className="core-service-card">
+                <div className="cs-icon-circle cs-circle-navy">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                  </svg>
+                </div>
+                <h4 className="cs-card-title cs-title-navy">INSTALLATION &amp; COMMISSIONING</h4>
+                <p className="cs-card-desc">Professional installation with precise testing and commissioning for smooth start-up.</p>
               </div>
-              <h3>Repair & Troubleshooting</h3>
-              <p>Experiencing low pure-water flow, continuous drainage, or alarm beeps? Our local Calicut repair team carries premium booster pumps, solenoid switches, UV lamps, and filters to restore performance on the first visit.</p>
-              <ul class="service-features-list">
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 24-Hour on-site response window</li>
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Genuine certified spare components</li>
-                <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 90-day warranty on replaced parts</li>
-              </ul>
+
+              {/* 4. OPERATIONS & MAINTENANCE (O&M) */}
+              <div className="core-service-card">
+                <div className="cs-icon-circle cs-circle-teal">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                  </svg>
+                </div>
+                <h4 className="cs-card-title cs-title-teal">OPERATIONS &amp; MAINTENANCE (O&amp;M)</h4>
+                <p className="cs-card-desc">Skilled operation and maintenance support to ensure optimum performance and system reliability.</p>
+              </div>
+
+              {/* 5. ANNUAL MAINTENANCE CONTRACTS (AMC) */}
+              <div className="core-service-card">
+                <div className="cs-icon-circle cs-circle-teal">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                    <polyline points="9 14 11 16 15 11"></polyline>
+                  </svg>
+                </div>
+                <h4 className="cs-card-title cs-title-teal">ANNUAL MAINTENANCE CONTRACTS (AMC)</h4>
+                <p className="cs-card-desc">Comprehensive AMC plans to keep your systems running efficiently all year round.</p>
+              </div>
+
+              {/* 6. UPGRADES & RETROFITS */}
+              <div className="core-service-card">
+                <div className="cs-icon-circle cs-circle-navy">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                </div>
+                <h4 className="cs-card-title cs-title-navy">UPGRADES &amp; RETROFITS</h4>
+                <p className="cs-card-desc">System upgrades, retrofits and performance enhancement solutions for existing installations.</p>
+              </div>
+
+              {/* 7. WATER TESTING & ANALYSIS */}
+              <div className="core-service-card">
+                <div className="cs-icon-circle cs-circle-teal">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M10 2v7.5L4.5 18A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-3L14 9.5V2"></path>
+                    <path d="M8.5 2h7"></path>
+                    <path d="M7 16h10"></path>
+                  </svg>
+                </div>
+                <h4 className="cs-card-title cs-title-teal">WATER TESTING &amp; ANALYSIS</h4>
+                <p className="cs-card-desc">Accurate testing and analysis to ensure water quality, compliance and process optimization.</p>
+              </div>
+
+              {/* 8. CONSULTATION & TECHNICAL SUPPORT */}
+              <div className="core-service-card">
+                <div className="cs-icon-circle cs-circle-navy">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="M8 11l3 3 5-5"></path>
+                  </svg>
+                </div>
+                <h4 className="cs-card-title cs-title-navy">CONSULTATION &amp; TECHNICAL SUPPORT</h4>
+                <p className="cs-card-desc">Expert guidance and 24/7 support to address your challenges and deliver the right solutions.</p>
+              </div>
+
             </div>
 
           </div>
+
+        </div>
+      </section>
+
+      {/* ==========================================================================
+           WHY CHOOSE AQUASOLVE (GRID)
+           ========================================================================== */}
+      <section className="section" style={{ paddingTop: '1rem', paddingBottom: '2rem' }}>
+        <div className="container">
+          
+          <div className="why-choose-section-box animate-on-scroll">
+            
+            {/* Top Banner Header */}
+            <div className="why-choose-banner-header">
+              <h3>&middot; WHY CHOOSE AQUASOLVE? &middot;</h3>
+            </div>
+
+            <div className="why-choose-grid">
+              
+              {/* 1. EXPERIENCED TEAM */}
+              <div className="why-choose-card">
+                <div className="wc-icon-circle wc-circle-teal">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <div className="wc-content">
+                  <h4>EXPERIENCED TEAM</h4>
+                  <p>Skilled professionals with deep domain knowledge and hands-on experience.</p>
+                </div>
+              </div>
+
+              {/* 2. CUSTOMIZED SOLUTIONS */}
+              <div className="why-choose-card">
+                <div className="wc-icon-circle wc-circle-blue">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                </div>
+                <div className="wc-content">
+                  <h4>CUSTOMIZED SOLUTIONS</h4>
+                  <p>Tailor-made systems to meet your specific requirements and site conditions.</p>
+                </div>
+              </div>
+
+              {/* 3. QUALITY ASSURANCE */}
+              <div className="why-choose-card">
+                <div className="wc-icon-circle wc-circle-teal">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="6"></circle>
+                    <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path>
+                    <path d="M9 8l2 2 4-4"></path>
+                  </svg>
+                </div>
+                <div className="wc-content">
+                  <h4>QUALITY ASSURANCE</h4>
+                  <p>High-quality components and strict testing at every stage of execution.</p>
+                </div>
+              </div>
+
+              {/* 4. ON-TIME DELIVERY */}
+              <div className="why-choose-card">
+                <div className="wc-icon-circle wc-circle-blue">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div className="wc-content">
+                  <h4>ON-TIME DELIVERY</h4>
+                  <p>Strong project management ensuring timely delivery and smooth execution.</p>
+                </div>
+              </div>
+
+              {/* 5. AFTER-SALES SUPPORT */}
+              <div className="why-choose-card why-choose-full-width">
+                <div className="wc-icon-circle wc-circle-teal">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                  </svg>
+                </div>
+                <div className="wc-content">
+                  <h4>AFTER-SALES SUPPORT</h4>
+                  <p>Dedicated support team for operation, maintenance and long-term reliability.</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
       </section>
 
@@ -185,7 +440,7 @@ export default function Services() {
             <div className="animate-on-scroll">
               <h2 style={{ fontSize: '2.2rem', marginBottom: '1.5rem' }}>Book Lab Water Test</h2>
               <p style={{ color: 'var(--text-light)', marginBottom: '1.5rem', fontSize: '1rem' }}>
-                Understanding your water is the first step towards health. Dr. Water Care operates an advanced chemical laboratory in Eranhipaalam, Kozhikode.
+                Understanding your water is the first step towards health. Aqua Solve Water Clinic operates an advanced chemical laboratory at Surabhi Complex, Karadi, Thamarassery.
               </p>
               <p style={{ color: 'var(--text-light)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
                 Simply schedule an on-site sample collection, or bring 1 Litre of your groundwater in a clean bottle directly to our collection counter. Our technicians test for acidity, calcium carbonate hardness, iron sediment presence, and biological bacteria.
@@ -195,7 +450,7 @@ export default function Services() {
                   <div className="info-icon" style={{ background: 'var(--bg-cyan-light)' }}><svg viewBox="0 0 24 24" style={{ fill: 'var(--primary-color)' }}><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
                   <div className="info-text">
                     <h4 style={{ fontSize: '0.95rem', fontWeight: 700 }}>Lab Address</h4>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--text-light)' }}>S.V. Colony, P.O, Eranhipaalam, Calicut</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-light)' }}>Surabhi Complex, Karadi, Thamarassery</p>
                   </div>
                 </div>
               </div>
@@ -284,7 +539,7 @@ export default function Services() {
                           disabled={isSubmitting}
                         >
                           <option>On-site Technician Visit (Kozhikode district only)</option>
-                          <option>I will drop-off water sample at Eranhipaalam Lab</option>
+                          <option>I will drop-off water sample at Thamarassery Lab</option>
                         </select>
                       </div>
                       <div className="form-group">
@@ -310,6 +565,8 @@ export default function Services() {
           </div>
         </div>
       </section>
+
+
 
       {/* ==========================================================================
            FAQ ACCORDION
