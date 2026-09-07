@@ -123,6 +123,10 @@ function aqua_solve_auto_create_pages() {
             'title'    => 'Solutions',
             'template' => 'page-services.php'
         ),
+        'solutions' => array(
+            'title'    => 'Solutions',
+            'template' => 'page-services.php'
+        ),
         'technology' => array(
             'title'    => 'Technology',
             'template' => 'page-biozone.php'
@@ -181,6 +185,16 @@ add_action('init', 'aqua_solve_auto_create_pages');
  * 5. Page URL Helper Function
  */
 function aqua_solve_page_url($slug) {
+    if ($slug === 'solutions' || $slug === 'services') {
+        $page = get_page_by_path('solutions');
+        if (!$page) {
+            $page = get_page_by_path('services');
+        }
+        if ($page) {
+            return get_permalink($page->ID);
+        }
+        return home_url('/solutions/');
+    }
     $page = get_page_by_path($slug);
     if ($page) {
         return get_permalink($page->ID);
@@ -362,7 +376,7 @@ function aqua_solve_service_url($slug) {
     if ($post) {
         return get_permalink($post->ID);
     }
-    return aqua_solve_page_url('services');
+    return aqua_solve_page_url('solutions');
 }
 
 /**
@@ -396,6 +410,15 @@ function aqua_solve_auto_create_sample_services() {
             'tag'      => 'STP PLANT',
             'tagClass' => 'tag-stp',
             'badge'    => 'Pollution Control Board Approved'
+        ),
+        array(
+            'title'    => 'Commercial & Industrial RO Plants',
+            'slug'     => 'ro-plant-commercial-industrial',
+            'subtitle' => 'High-capacity reverse osmosis systems engineered with multi-stage pre-filtration, high-pressure pumps, and SS 304 skid frames.',
+            'desc'     => 'Our Commercial and Industrial Reverse Osmosis (RO) plants are engineered to purify high TDS water for hotels, hospitals, industrial manufacturing, and institutions. Designed with multi-stage pre-filtration, high-pressure pumps, membrane pressure vessels, and automated control systems.',
+            'tag'      => 'RO & WTP PLANTS',
+            'tagClass' => 'tag-wtp',
+            'badge'    => 'IS 10500 Compliant RO System'
         ),
         array(
             'title'    => 'Effluent Treatment Plant (ETP)',

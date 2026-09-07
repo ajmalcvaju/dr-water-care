@@ -39,7 +39,7 @@ get_header();
                             <button class="btn btn-primary trigger-quote" data-product="Engineering Consultation">
                                 Request a Consultation
                             </button>
-                            <a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>" class="btn btn-secondary">Explore Our Solutions</a>
+                            <a href="<?php echo esc_url(aqua_solve_page_url('solutions')); ?>" class="btn btn-secondary">Explore Our Solutions</a>
                         </div>
                     </div>
                     <div class="slide-visual">
@@ -108,7 +108,7 @@ get_header();
 
         <div class="plants-grid">
             <!-- Solution 1: Commercial RO Plants -->
-            <a href="<?php echo esc_url(aqua_solve_service_url('water-treatment-plant-wtp')); ?>" class="plant-card-link animate-on-scroll">
+            <a href="<?php echo esc_url(aqua_solve_service_url('ro-plant-commercial-industrial')); ?>" class="plant-card-link animate-on-scroll">
                 <div class="plant-card">
                     <div class="plant-tag tag-wtp">COMMERCIAL RO</div>
                     <div class="plant-img-wrapper">
@@ -125,7 +125,7 @@ get_header();
             </a>
 
             <!-- Solution 2: Industrial RO Plants -->
-            <a href="<?php echo esc_url(aqua_solve_service_url('water-treatment-plant-wtp')); ?>" class="plant-card-link animate-on-scroll">
+            <a href="<?php echo esc_url(aqua_solve_service_url('ro-plant-commercial-industrial')); ?>" class="plant-card-link animate-on-scroll">
                 <div class="plant-card">
                     <div class="plant-tag tag-wtp">INDUSTRIAL RO</div>
                     <div class="plant-img-wrapper">

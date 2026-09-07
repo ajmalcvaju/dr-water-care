@@ -40,7 +40,7 @@ get_header();
         </div>
 
         <div class="plants-grid">
-            <a href="<?php echo esc_url(aqua_solve_service_url('water-treatment-plant-wtp')); ?>" class="plant-card-link animate-on-scroll">
+            <a href="<?php echo esc_url(aqua_solve_service_url('ro-plant-commercial-industrial')); ?>" class="plant-card-link animate-on-scroll">
                 <div class="plant-card">
                     <div class="plant-tag tag-wtp">RO &amp; WTP PLANTS</div>
                     <div class="plant-img-wrapper">

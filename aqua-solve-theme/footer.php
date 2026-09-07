@@ -24,7 +24,7 @@
                 <ul class="footer-links">
                     <li><a href="<?php echo esc_url(home_url('/')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Home</a></li>
                     <li><a href="<?php echo esc_url(aqua_solve_page_url('about')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> About</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Solutions</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('solutions')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Solutions</a></li>
                     <li><a href="<?php echo esc_url(aqua_solve_page_url('technology')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Technology</a></li>
                     <li><a href="<?php echo esc_url(aqua_solve_page_url('industries')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Industries</a></li>
                     <li><a href="<?php echo esc_url(aqua_solve_page_url('projects')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Projects</a></li>

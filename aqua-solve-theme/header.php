@@ -65,7 +65,7 @@
             else :
                 $is_home = is_front_page() || is_home();
                 $is_about = is_page('about');
-                $is_services = is_page('services') || is_post_type_archive('service');
+                $is_services = is_page('services') || is_page('solutions') || is_post_type_archive('service') || is_singular('service');
                 $is_tech = is_page('technology') || is_page('biozone-technology');
                 $is_industries = is_page('industries');
                 $is_projects = is_page('projects');
@@ -75,7 +75,7 @@
                 <ul class="nav-links" id="navLinks">
                     <li><a href="<?php echo esc_url(home_url('/')); ?>" class="<?php echo $is_home ? 'active' : ''; ?>">Home</a></li>
                     <li><a href="<?php echo esc_url(aqua_solve_page_url('about')); ?>" class="<?php echo $is_about ? 'active' : ''; ?>">About</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>" class="<?php echo $is_services ? 'active' : ''; ?>">Solutions</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('solutions')); ?>" class="<?php echo $is_services ? 'active' : ''; ?>">Solutions</a></li>
                     <li><a href="<?php echo esc_url(aqua_solve_page_url('technology')); ?>" class="<?php echo $is_tech ? 'active' : ''; ?>">Technology</a></li>
                     <li><a href="<?php echo esc_url(aqua_solve_page_url('industries')); ?>" class="<?php echo $is_industries ? 'active' : ''; ?>">Industries</a></li>
                     <li><a href="<?php echo esc_url(aqua_solve_page_url('projects')); ?>" class="<?php echo $is_projects ? 'active' : ''; ?>">Projects</a></li>

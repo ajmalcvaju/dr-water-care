@@ -38,7 +38,7 @@ while (have_posts()) : the_post();
     <div class="container">
         <div style="margin-bottom: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.75);">
             <a href="<?php echo esc_url(home_url('/')); ?>" style="color: #fff; text-decoration: none;">Home</a> &nbsp;&gt;&nbsp; 
-            <a href="<?php echo esc_url(home_url('/services/')); ?>" style="color: #fff; text-decoration: none; margin-left: 0.4rem;">Services</a> &nbsp;&gt;&nbsp; 
+            <a href="<?php echo esc_url(aqua_solve_page_url('solutions')); ?>" style="color: #fff; text-decoration: none; margin-left: 0.4rem;">Solutions</a> &nbsp;&gt;&nbsp; 
             <span style="color: #7dd3fc; margin-left: 0.4rem; font-weight: 700;"><?php echo esc_html($tag); ?></span>
         </div>
         <h1><?php echo esc_html($title); ?></h1>
@@ -46,7 +46,7 @@ while (have_posts()) : the_post();
     </div>
     
     <svg class="banner-wave" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 32L60 48C120 64 240 96 360 101.3C480 107 600 85 720 69.3C840 53 960 43 1080 42.7C1200 43 1320 53 1380 58.7L1440 64V120H1380C1320 120 1200 120 1080 120C960 120 480 120 360 120C240 120 120 120 60 120H0V32Z" fill="#FFF"/>
+        <path d="M0 32L60 48C120 64 240 96 360 101.3C480 107 600 85 720 69.3C840 53 960 43 1080 42.7C1200 43 1320 53 1380 58.7L1440 64V120H1380C1320 120 1200 120 1080 120C600 120 480 120 360 120C240 120 120 120 60 120H0V32Z" fill="#FFF"/>
     </svg>
 
     <div class="banner-decorations">
@@ -114,8 +114,8 @@ while (have_posts()) : the_post();
                     <button class="btn btn-primary trigger-quote" data-product="<?php echo esc_attr($title); ?>">
                         Request Technical Proposal
                     </button>
-                    <a href="<?php echo esc_url(home_url('/services/')); ?>" class="btn btn-secondary">
-                        &larr; Back to All Services
+                    <a href="<?php echo esc_url(aqua_solve_page_url('solutions')); ?>" class="btn btn-secondary">
+                        &larr; Back to All Solutions
                     </a>
                 </div>
             </div>
