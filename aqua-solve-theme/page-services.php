@@ -13,8 +13,8 @@ get_header();
      ========================================================================== -->
 <section class="page-banner" aria-label="Services page introduction">
     <div class="container">
-        <h1>Professional Services & Lab Testing</h1>
-        <p>Expert installations, periodic maintenance support, and extensive laboratory diagnostic reports.</p>
+        <h1>Solutions &amp; Engineering Services</h1>
+        <p>Turnkey Water &amp; Wastewater Treatment Engineering, Custom System Design, and Long-Term Operations Support.</p>
     </div>
     
     <svg class="banner-wave" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,41 +29,28 @@ get_header();
 </section>
 
 <!-- ==========================================================================
-     STP / ETP / WTP / WATER PURIFIER PLANT SHOWCASE (TOP)
+     CORE ENGINEERING SOLUTIONS SHOWCASE (TOP CATEGORY)
      ========================================================================== -->
-<section class="section plant-showcase-section" aria-label="Water Treatment Plants Showcase">
+<section class="section plant-showcase-section" aria-label="Core Water Treatment Plants Showcase">
     <div class="container">
         <div class="section-header animate-on-scroll text-center">
-            <h2>Industrial &amp; Commercial Plant Solutions</h2>
-            <p style="max-width: 650px; margin: 0.5rem auto 0 auto;">Heavy-duty treatment facilities engineered for optimal recycling, purification, and environmental compliance.</p>
+            <span style="color: #0284c7; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Primary Business Focus</span>
+            <h2>Core Engineering Solutions</h2>
+            <p style="max-width: 700px; margin: 0.5rem auto 0 auto;">Advanced turnkey water and wastewater treatment facilities engineered for commercial, industrial, and institutional applications.</p>
         </div>
 
         <div class="plants-grid">
-            <a href="<?php echo esc_url(aqua_solve_service_url('water-purifier')); ?>" class="plant-card-link animate-on-scroll">
-                <div class="plant-card">
-                    <div class="plant-tag tag-purifier">WATER PURIFIER</div>
-                    <div class="plant-img-wrapper">
-                        <img src="<?php echo aqua_solve_asset('images/product_puroaqua_black.jpg'); ?>" alt="Aqua Solve Water Purifier" />
-                    </div>
-                    <div class="plant-info">
-                        <p>Advanced domestic RO + UF + Alkaline water purifiers that deliver 100% pure, healthy drinking water.</p>
-                        <div class="plant-card-action">
-                            <span>View Specs &amp; Details</span> &rarr;
-                        </div>
-                    </div>
-                </div>
-            </a>
-
             <a href="<?php echo esc_url(aqua_solve_service_url('water-treatment-plant-wtp')); ?>" class="plant-card-link animate-on-scroll">
                 <div class="plant-card">
-                    <div class="plant-tag tag-wtp">WTP PLANT</div>
+                    <div class="plant-tag tag-wtp">RO &amp; WTP PLANTS</div>
                     <div class="plant-img-wrapper">
-                        <img src="<?php echo aqua_solve_asset('images/wtp_plant.png'); ?>" alt="Water Treatment Plant (WTP)" />
+                        <img src="<?php echo aqua_solve_asset('images/about_ro_plant.png'); ?>" alt="Commercial RO Plant" />
                     </div>
                     <div class="plant-info">
-                        <p>Water Treatment Plants that deliver safe, clean &amp; potable water for various applications.</p>
+                        <h3 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.4rem;">Commercial &amp; Industrial RO Plants</h3>
+                        <p>High-capacity reverse osmosis systems engineered with multi-stage pre-filtration, high-pressure pumps, and SS 304 skid frames.</p>
                         <div class="plant-card-action">
-                            <span>View Specs &amp; Details</span> &rarr;
+                            <span>Explore RO Plant Engineering</span> &rarr;
                         </div>
                     </div>
                 </div>
@@ -76,9 +63,10 @@ get_header();
                         <img src="<?php echo aqua_solve_asset('images/stp_plant.png'); ?>" alt="Sewage Treatment Plant (STP)" />
                     </div>
                     <div class="plant-info">
-                        <p>Sewage Treatment Plants that treat domestic sewage efficiently and enable safe discharge or reuse.</p>
+                        <h3 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.4rem;">Sewage Treatment Plants (STP)</h3>
+                        <p>Turnkey domestic sewage treatment setups utilizing MBR / MBBR bioreactors designed for safe discharge or landscape recycling.</p>
                         <div class="plant-card-action">
-                            <span>View Specs &amp; Details</span> &rarr;
+                            <span>Explore STP Solutions</span> &rarr;
                         </div>
                     </div>
                 </div>
@@ -91,9 +79,26 @@ get_header();
                         <img src="<?php echo aqua_solve_asset('images/etp_plant.png'); ?>" alt="Effluent Treatment Plant (ETP)" />
                     </div>
                     <div class="plant-info">
-                        <p>Effluent Treatment Plants designed to treat industrial wastewater and ensure zero liquid discharge solutions.</p>
+                        <h3 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.4rem;">Effluent Treatment Plants (ETP)</h3>
+                        <p>Specialized industrial wastewater treatment configurations featuring coagulation, settling, and Zero Liquid Discharge (ZLD) options.</p>
                         <div class="plant-card-action">
-                            <span>View Specs &amp; Details</span> &rarr;
+                            <span>Explore ETP Solutions</span> &rarr;
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="<?php echo esc_url(aqua_solve_page_url('biozone-technology')); ?>" class="plant-card-link animate-on-scroll">
+                <div class="plant-card" style="border: 2px solid #0284c7;">
+                    <div class="plant-tag" style="background: #0284c7; color: #fff;">ADVANCED BIOLOGICAL TECH</div>
+                    <div class="plant-img-wrapper">
+                        <img src="<?php echo aqua_solve_asset('images/stp_detail_hero.png'); ?>" alt="BioZone Technology" />
+                    </div>
+                    <div class="plant-info">
+                        <h3 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.4rem;">BioZone Treatment Technology</h3>
+                        <p>AquaSolve’s specialized compact STP &amp; ETP technology featuring reduced civil footprint, ON/OFF operational flexibility, and low power draw.</p>
+                        <div class="plant-card-action" style="color: #0284c7; font-weight: 700;">
+                            <span>Discover BioZone USP</span> &rarr;
                         </div>
                     </div>
                 </div>

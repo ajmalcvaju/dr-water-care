@@ -6,8 +6,10 @@
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo">
                     <img src="<?php echo aqua_solve_asset('images/aqua_solve.png'); ?>" alt="Aqua Solve Logo" class="footer-logo-img" />
                 </a>
-                <p>
-                    An ISO 9001:2015 certified company in Kerala. Pioneers in installing premium domestic ROs, water softeners, and heavy commercial filtration systems.
+                <p style="margin-top: 0.8rem; font-size: 0.9rem; line-height: 1.6; color: #94a3b8;">
+                    <strong>Advanced Water Treatment Engineering</strong><br />
+                    <em>Engineering Water. Enabling Life.</em><br />
+                    An ISO 9001:2015 certified company in Kerala delivering commercial, industrial and institutional water &amp; wastewater treatment solutions.
                 </p>
                 <div class="footer-social">
                     <a href="#" class="footer-social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg></a>
@@ -21,21 +23,24 @@
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
                     <li><a href="<?php echo esc_url(home_url('/')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Home</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('about')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> About Us</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('products')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Our Products</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Services & Lab</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('contact')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Contact Us</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('about')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> About</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Solutions</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('technology')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Technology</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('industries')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Industries</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('projects')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Projects</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('knowledge-center')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Knowledge Center</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('contact')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Contact</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
-                <h3>Services</h3>
+                <h3>Engineering Solutions</h3>
                 <ul class="footer-links">
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Water Quality Test</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Domestic RO Setup</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> AMC Maintenance</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Water Softening</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Iron Filtration</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_service_url('water-treatment-plant-wtp')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Commercial RO Plants</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_service_url('water-treatment-plant-wtp')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Industrial RO Plants</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_service_url('sewage-treatment-plant-stp')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Sewage Treatment (STP)</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_service_url('effluent-treatment-plant-etp')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> Effluent Treatment (ETP)</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('biozone-technology')); ?>"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg> BioZone Technology</a></li>
                 </ul>
             </div>
 

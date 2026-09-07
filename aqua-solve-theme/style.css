@@ -3407,16 +3407,21 @@ footer {
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 0.45rem 1.5rem;
+  padding: 0.35rem 1.1rem;
   border-radius: 30px;
   color: #fff;
   font-weight: 800;
-  font-size: 0.78rem;
-  letter-spacing: 1.8px;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
   text-transform: uppercase;
   white-space: nowrap;
+  max-width: calc(100% - 24px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
 }
 
 .plant-card:hover .plant-tag {
@@ -3650,19 +3655,66 @@ footer {
 @media (max-width: 1200px) {
   .plants-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 1.5rem;
   }
 }
 
 @media (max-width: 992px) {
   .plants-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .plants-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem 1rem !important;
+  }
+  .plant-card {
+    padding: 2rem 1rem 1.4rem 1rem !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+  .plant-tag {
+    font-size: 0.68rem !important;
+    letter-spacing: 0.5px !important;
+    padding: 0.3rem 0.75rem !important;
+    top: -12px !important;
+    max-width: calc(100% - 20px) !important;
+  }
+  .biozone-card-highlight {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+    padding: 1.2rem 1rem !important;
+    text-align: left !important;
+  }
+  .biozone-card-highlight .biozone-card-header {
+    margin-bottom: 0.5rem !important;
+  }
+  .biozone-card-highlight .biozone-card-header h3 {
+    font-size: 1.15rem !important;
+    line-height: 1.35 !important;
+  }
+  .biozone-card-highlight .biozone-img-wrapper {
+    height: 180px !important;
+    width: 100% !important;
+    margin-bottom: 0.8rem !important;
+  }
+  .biozone-card-highlight .biozone-card-body p {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 0.8rem !important;
   }
 }
 
 @media (max-width: 576px) {
   .plants-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr !important;
+    gap: 2.8rem 0.5rem !important;
   }
   .process-banner {
     margin-bottom: 2rem;
@@ -3670,6 +3722,166 @@ footer {
   }
   .process-banner h2 {
     font-size: 1.1rem;
+  }
+  .biozone-checklist-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+    max-width: 480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .biozone-highlight-action .btn {
+    width: 100% !important;
+    max-width: 320px !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* --- BIOZONE HIGHLIGHT RESPONSIVE LAYOUT --- */
+.biozone-highlight-container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.biozone-highlight-col-text {
+  text-align: left;
+}
+
+.biozone-checklist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 1.8rem;
+}
+
+.biozone-check-item {
+  background: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f172a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  text-align: left;
+}
+
+.biozone-highlight-col-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-only-image {
+  display: none;
+}
+
+.desktop-only-image {
+  display: block;
+}
+
+@media (max-width: 991px) {
+  .biozone-highlight-container {
+    display: block !important;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center !important;
+  }
+  .biozone-highlight-col-text {
+    text-align: center !important;
+  }
+  .biozone-highlight-header {
+    text-align: center !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .desktop-only-image {
+    display: none !important;
+  }
+  .mobile-only-image {
+    display: block !important;
+    margin-bottom: 1.8rem !important;
+  }
+  .mobile-only-image img {
+    width: 100% !important;
+    max-width: 750px !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+    margin: 0 auto !important;
+  }
+  .biozone-highlight-desc p {
+    text-align: center !important;
+  }
+  .biozone-checklist-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+    max-width: 480px !important;
+    margin: 0 auto 1.8rem auto !important;
+  }
+  .biozone-check-item {
+    text-align: center !important;
+  }
+  .biozone-highlight-action {
+    text-align: center !important;
+  }
+  .biozone-highlight-action .btn {
+    width: 100% !important;
+    max-width: 320px !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* --- BIOZONE INTRO SECTION GRID LAYOUT --- */
+.biozone-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "header image"
+    "text image";
+  gap: 0.8rem 3rem;
+  align-items: start;
+}
+
+.biozone-intro-header {
+  grid-area: header;
+}
+
+.biozone-intro-text {
+  grid-area: text;
+}
+
+.biozone-intro-image {
+  grid-area: image;
+  align-self: center;
+}
+
+@media (max-width: 992px) {
+  .biozone-intro-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  .biozone-intro-header {
+    order: 1 !important;
+    width: 100% !important;
+  }
+  .biozone-intro-image {
+    order: 2 !important;
+    width: 100% !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .biozone-intro-text {
+    order: 3 !important;
+    width: 100% !important;
+  }
+  .biozone-blue-box {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
   }
 }
 
@@ -4521,4 +4733,169 @@ footer {
     margin: 0 auto !important;
   }
 }
+
+/* --- FEATURED PROJECTS GRID --- */
+.featured-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  margin-top: 2rem;
+}
+
+.featured-project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(2, 132, 199, 0.12) !important;
+}
+
+@media (max-width: 992px) {
+  .featured-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+/* --- KNOWLEDGE CENTER EXPANSION STYLES --- */
+.knowledge-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 2.8rem;
+}
+
+.filter-btn {
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 0.45rem 1.1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: #0284c7;
+  color: #fff;
+  border-color: #0284c7;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+}
+
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.knowledge-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.knowledge-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(2, 132, 199, 0.12);
+  border-color: #bae6fd;
+}
+
+.knowledge-card-img-wrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background: #f1f5f9;
+}
+
+.knowledge-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.knowledge-card:hover .knowledge-card-img {
+  transform: scale(1.04);
+}
+
+.knowledge-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.takeaway-box {
+  background: #f0f9ff;
+  border-left: 4px solid #0284c7;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0369a1;
+  margin: 1rem 0 1.2rem 0;
+}
+
+.knowledge-single-article {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.single-article-content p {
+  color: #334155;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.single-article-content h2 {
+  color: #0f172a;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 2rem 0 1rem 0;
+}
+
+.single-article-content h3 {
+  color: #0284c7;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 1.5rem 0 0.8rem 0;
+}
+
+@media (max-width: 992px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .knowledge-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .filter-btn {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.75rem;
+  }
+}
+
+
 

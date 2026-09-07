@@ -119,17 +119,37 @@ function aqua_solve_auto_create_pages() {
             'title'    => 'About Us',
             'template' => 'page-about.php'
         ),
-        'products' => array(
-            'title'    => 'Products',
-            'template' => 'page-products.php'
-        ),
         'services' => array(
-            'title'    => 'Services & Lab',
+            'title'    => 'Solutions',
             'template' => 'page-services.php'
+        ),
+        'technology' => array(
+            'title'    => 'Technology',
+            'template' => 'page-biozone.php'
+        ),
+        'biozone-technology' => array(
+            'title'    => 'BioZone Technology',
+            'template' => 'page-biozone.php'
+        ),
+        'industries' => array(
+            'title'    => 'Industries We Serve',
+            'template' => 'page-industries.php'
+        ),
+        'projects' => array(
+            'title'    => 'Projects Showcase',
+            'template' => 'page-projects.php'
+        ),
+        'knowledge-center' => array(
+            'title'    => 'Knowledge Center',
+            'template' => 'page-knowledge.php'
         ),
         'contact' => array(
             'title'    => 'Contact Us',
             'template' => 'page-contact.php'
+        ),
+        'products' => array(
+            'title'    => 'Products Catalog',
+            'template' => 'page-products.php'
         ),
     );
 

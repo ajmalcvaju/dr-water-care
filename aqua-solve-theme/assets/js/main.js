@@ -83,7 +83,8 @@ function initHeroSlider() {
   if (slides.length === 0) return;
 
   let currentSlide = 0;
-  let slideInterval;
+  let slideInterval = null;
+  let isUserInteracted = false;
   const intervalTime = 6000;
 
   // Create dots if not present
@@ -95,9 +96,10 @@ function initHeroSlider() {
       dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
       dotsContainer.appendChild(dot);
 
-      dot.addEventListener('click', () => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
         goToSlide(index);
-        resetInterval();
+        stopAutoSlide();
       });
     });
   }
@@ -121,27 +123,56 @@ function initHeroSlider() {
   }
 
   if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       nextSlide();
-      resetInterval();
+      stopAutoSlide();
     });
   }
 
   if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       prevSlide();
-      resetInterval();
+      stopAutoSlide();
     });
   }
 
   function startInterval() {
-    slideInterval = setInterval(nextSlide, intervalTime);
+    if (!slideInterval && !isUserInteracted) {
+      slideInterval = setInterval(nextSlide, intervalTime);
+    }
   }
 
-  function resetInterval() {
-    clearInterval(slideInterval);
-    startInterval();
+  function stopAutoSlide() {
+    isUserInteracted = true;
+    if (slideInterval) {
+      clearInterval(slideInterval);
+      slideInterval = null;
+    }
   }
+
+  // Freeze/stuck hero slider auto-scroll when clicked or touched in mobile/desktop view
+  slider.addEventListener('click', () => {
+    stopAutoSlide();
+  });
+
+  slider.addEventListener('touchstart', () => {
+    stopAutoSlide();
+  }, { passive: true });
+
+  slider.addEventListener('mouseenter', () => {
+    if (slideInterval) {
+      clearInterval(slideInterval);
+      slideInterval = null;
+    }
+  });
+
+  slider.addEventListener('mouseleave', () => {
+    if (!isUserInteracted) {
+      startInterval();
+    }
+  });
 
   startInterval();
 }

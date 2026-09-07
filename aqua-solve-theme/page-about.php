@@ -46,16 +46,16 @@ get_header();
 
                 <div class="pioneers-text-column animate-on-scroll">
                     <h2 class="pioneers-title pioneers-title-desktop">
-                        Pioneers in Clean Water Technology
+                        Advanced Water Treatment Engineering
                     </h2>
                     <p class="pioneers-desc">
-                        Aqua Solve Water Clinic was established with the vision of solving the water safety crises in Kozhikode and surrounding districts in Kerala. Recognising that municipal supply and groundwater have distinct chemical differences, we set out to build custom-engineered water purification products.
+                        AquaSolve Water Clinic delivers advanced water treatment solutions for commercial, industrial, and institutional clients. Established in 2015 at Thamarassery, Kozhikode, Kerala, our organization provides end-to-end engineering from water assessment and system design to turnkey installation, commissioning, and long-term lifecycle support.
                     </p>
                     <p class="pioneers-desc">
-                        Today, our ISO 9001:2015 certified assemblies filter harmful microbes, heavy minerals, and organic contamination in thousands of residential villas, apartment complexes, medical clinics, and commercial spaces.
+                        From commercial RO systems and industrial water treatment plants to turnkey Sewage Treatment Plants (STP), Effluent Treatment Plants (ETP), and advanced BioZone treatment technology, we build systems tailored to specific project requirements.
                     </p>
-                    <p class="pioneers-desc" style="margin-bottom: 0;">
-                        We believe in the science of purification. We don't just supply filters; we analyze your water chemistry and curate customized membranes and sand components to match your exact water quality footprint.
+                    <p class="pioneers-desc" style="margin-bottom: 0; font-weight: 700; color: #0284c7;">
+                        Brand Philosophy: Quality Without Compromise. “We don't just install water treatment systems. We build long-term confidence through engineering, quality, and service.”
                     </p>
                 </div>
             </div>
@@ -84,7 +84,7 @@ get_header();
                     </div>
                 </div>
                 <p class="vm-desc">
-                    To be a trusted leader in water treatment solutions, recognized for excellence, innovation and commitment to a sustainable tomorrow.
+                    To become one of South India's most trusted advanced water treatment engineering companies, delivering innovative, sustainable and reliable water treatment solutions for commercial, industrial and institutional sectors.
                 </p>
                 <svg class="vm-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>

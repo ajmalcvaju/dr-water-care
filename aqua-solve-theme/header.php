@@ -65,15 +65,21 @@
             else :
                 $is_home = is_front_page() || is_home();
                 $is_about = is_page('about');
-                $is_products = is_page('products') || is_post_type_archive('product');
                 $is_services = is_page('services') || is_post_type_archive('service');
+                $is_tech = is_page('technology') || is_page('biozone-technology');
+                $is_industries = is_page('industries');
+                $is_projects = is_page('projects');
+                $is_knowledge = is_page('knowledge-center');
                 $is_contact = is_page('contact');
             ?>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="<?php echo esc_url(home_url('/')); ?>" class="<?php echo $is_home ? 'active' : ''; ?>">Home</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('about')); ?>" class="<?php echo $is_about ? 'active' : ''; ?>">About Us</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('products')); ?>" class="<?php echo $is_products ? 'active' : ''; ?>">Products</a></li>
-                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>" class="<?php echo $is_services ? 'active' : ''; ?>">Services & Lab</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('about')); ?>" class="<?php echo $is_about ? 'active' : ''; ?>">About</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('services')); ?>" class="<?php echo $is_services ? 'active' : ''; ?>">Solutions</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('technology')); ?>" class="<?php echo $is_tech ? 'active' : ''; ?>">Technology</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('industries')); ?>" class="<?php echo $is_industries ? 'active' : ''; ?>">Industries</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('projects')); ?>" class="<?php echo $is_projects ? 'active' : ''; ?>">Projects</a></li>
+                    <li><a href="<?php echo esc_url(aqua_solve_page_url('knowledge-center')); ?>" class="<?php echo $is_knowledge ? 'active' : ''; ?>">Knowledge Center</a></li>
                     <li><a href="<?php echo esc_url(aqua_solve_page_url('contact')); ?>" class="<?php echo $is_contact ? 'active' : ''; ?>">Contact</a></li>
                 </ul>
             <?php endif; ?>
