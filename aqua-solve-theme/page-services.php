@@ -89,15 +89,15 @@ get_header();
             </a>
 
             <a href="<?php echo esc_url(aqua_solve_page_url('biozone-technology')); ?>" class="plant-card-link animate-on-scroll">
-                <div class="plant-card" style="border: 2px solid #0284c7;">
-                    <div class="plant-tag" style="background: #0284c7; color: #fff;">ADVANCED BIOLOGICAL TECH</div>
+                <div class="plant-card">
+                    <div class="plant-tag tag-biozone">ADVANCED BIOLOGICAL TECH</div>
                     <div class="plant-img-wrapper">
                         <img src="<?php echo aqua_solve_asset('images/stp_detail_hero.png'); ?>" alt="BioZone Technology" />
                     </div>
                     <div class="plant-info">
                         <h3 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.4rem;">BioZone Treatment Technology</h3>
                         <p>AquaSolve’s specialized compact STP &amp; ETP technology featuring reduced civil footprint, ON/OFF operational flexibility, and low power draw.</p>
-                        <div class="plant-card-action" style="color: #0284c7; font-weight: 700;">
+                        <div class="plant-card-action">
                             <span>Discover BioZone USP</span> &rarr;
                         </div>
                     </div>
