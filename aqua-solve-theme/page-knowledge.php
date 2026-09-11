@@ -279,11 +279,27 @@ $articles = array(
                           <p>Ferrous iron is clear upon extraction but oxidizes upon exposure to air, forming insoluble reddish-brown ferric hydroxide stains. Catalytic manganese dioxide media promotes rapid iron oxidation and physical filtration without chemical dosing.</p>
                           <p>Installing automatic ion-exchange water softeners removes hardness ions, protecting pipework and solar heaters, ensuring clear scale-free water supply.</p>'
     ),
+    'biozone-technology' => array(
+        'title'       => 'BioZone Technology: Compact Biological Wastewater Treatment',
+        'category'    => 'BioZone Technology',
+        'cat_slug'    => 'biozone-technology',
+        'desc'        => 'AquaSolve’s specialized compact STP & ETP technology featuring reduced civil footprint, demand-based ON/OFF operational flexibility, ozone disinfection, and low power draw.',
+        'takeaway'    => 'Compact footprint, low power draw & ON/OFF operational flexibility.',
+        'image'       => 'stp_detail_hero.png',
+        'alt'         => 'BioZone Treatment Technology compact biological wastewater system',
+        'custom_link' => aqua_solve_page_url('biozone-technology'),
+        'content'     => '<p>BioZone is AquaSolve’s specialized biological treatment technology designed for compact, energy-efficient Sewage and Effluent Treatment Plants.</p>'
+    ),
 );
 
 // Check if a specific single article is requested
 $selected_slug = isset($_GET['article']) ? sanitize_text_field($_GET['article']) : '';
 $current_article = ($selected_slug && isset($articles[$selected_slug])) ? $articles[$selected_slug] : null;
+
+if ($current_article && !empty($current_article['custom_link'])) {
+    wp_redirect($current_article['custom_link']);
+    exit;
+}
 
 ?>
 
@@ -400,7 +416,8 @@ $current_article = ($selected_slug && isset($articles[$selected_slug])) ? $artic
                                 <div class="takeaway-box" style="margin: 0.5rem 0 1rem; font-size: 0.8rem; padding: 0.5rem 0.75rem;">
                                     ✓ <?php echo esc_html($rel_article['takeaway']); ?>
                                 </div>
-                                <a href="<?php echo esc_url(aqua_solve_page_url('knowledge-center') . '?article=' . $rel_slug); ?>" class="btn btn-secondary" style="width: 100%; text-align: center; justify-content: center; font-size: 0.85rem; font-weight: 700; padding: 0.65rem 1rem;">
+                                <?php $rel_url = !empty($rel_article['custom_link']) ? $rel_article['custom_link'] : aqua_solve_page_url('knowledge-center') . '?article=' . $rel_slug; ?>
+                                <a href="<?php echo esc_url($rel_url); ?>" class="btn btn-secondary" style="width: 100%; text-align: center; justify-content: center; font-size: 0.85rem; font-weight: 700; padding: 0.65rem 1rem;">
                                     Read Article &rarr;
                                 </a>
                             </div>
@@ -428,7 +445,8 @@ $current_article = ($selected_slug && isset($articles[$selected_slug])) ? $artic
 
         <!-- Category Filter Buttons -->
         <div class="knowledge-filter-bar" aria-label="Article Category Filters">
-            <button class="filter-btn active" data-filter="all">All Topics (19)</button>
+            <button class="filter-btn active" data-filter="all">All Topics (20)</button>
+            <button class="filter-btn" data-filter="biozone-technology">BioZone Tech</button>
             <button class="filter-btn" data-filter="water-softening">Water Softening</button>
             <button class="filter-btn" data-filter="water-filtration">Water Filtration</button>
             <button class="filter-btn" data-filter="activated-carbon">Activated Carbon</button>
@@ -465,7 +483,8 @@ $current_article = ($selected_slug && isset($articles[$selected_slug])) ? $artic
                             <div class="takeaway-box">
                                 ✓ <?php echo esc_html($art['takeaway']); ?>
                             </div>
-                            <a href="<?php echo esc_url(aqua_solve_page_url('knowledge-center') . '?article=' . $slug); ?>" class="btn btn-secondary" style="width: 100%; text-align: center; justify-content: center; font-size: 0.88rem; font-weight: 700; padding: 0.75rem 1rem;">
+                            <?php $art_url = !empty($art['custom_link']) ? $art['custom_link'] : aqua_solve_page_url('knowledge-center') . '?article=' . $slug; ?>
+                            <a href="<?php echo esc_url($art_url); ?>" class="btn btn-secondary" style="width: 100%; text-align: center; justify-content: center; font-size: 0.88rem; font-weight: 700; padding: 0.75rem 1rem;">
                                 Read Article &rarr;
                             </a>
                         </div>

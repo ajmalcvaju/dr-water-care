@@ -454,4 +454,219 @@ function aqua_solve_auto_create_sample_services() {
 }
 add_action('init', 'aqua_solve_auto_create_sample_services', 25);
 
+/**
+ * ==========================================================================
+ * 13. 10/10 SEO OPTIMIZATION MODULE FOR COMMERCIAL & INDUSTRIAL WATER TREATMENT
+ * ==========================================================================
+ */
+
+/**
+ * Filter Document Title for targeted Commercial & Industrial B2B Search Keywords
+ */
+function aqua_solve_custom_seo_title($title) {
+    if (is_front_page() || is_home()) {
+        return 'AquaSolve Water Clinic | Commercial & Industrial Water Treatment Plants';
+    }
+    if (is_page('about')) {
+        return 'About AquaSolve Water Clinic | Commercial & Industrial Water Treatment Engineers';
+    }
+    if (is_page('solutions') || is_page('services')) {
+        return 'Commercial & Industrial Water Treatment Solutions | STP, ETP, RO Plants';
+    }
+    if (is_page('biozone-technology') || is_page('technology')) {
+        return 'BioZone Technology | Compact Biological Wastewater Treatment Plants';
+    }
+    if (is_page('industries')) {
+        return 'Industrial & Commercial Water Treatment Application Sectors | AquaSolve';
+    }
+    if (is_page('projects')) {
+        return 'Commercial & Industrial Water Treatment Turnkey Projects | AquaSolve';
+    }
+    if (is_page('knowledge-center') || is_page('knowledge')) {
+        return 'Water & Wastewater Engineering Knowledge Center | AquaSolve Water Clinic';
+    }
+    if (is_page('contact')) {
+        return 'Contact AquaSolve Water Clinic | Commercial Water Treatment Engineers';
+    }
+    if (is_singular('service')) {
+        return get_the_title() . ' | Commercial & Industrial Water Treatment | AquaSolve';
+    }
+    if (is_singular('product')) {
+        return get_the_title() . ' | Commercial & Industrial Water Purification | AquaSolve';
+    }
+    return $title;
+}
+add_filter('pre_get_document_title', 'aqua_solve_custom_seo_title', 100);
+
+/**
+ * Inject 10/10 SEO Meta Tags, OpenGraph, Twitter Cards, Geo Tags & Schema.org JSON-LD
+ */
+function aqua_solve_seo_meta_tags() {
+    $site_name = 'AquaSolve Water Clinic';
+    $default_desc = 'AquaSolve Water Clinic is an ISO 9001:2015 certified engineering company specializing in Commercial & Industrial Water Treatment Plants, Sewage Treatment Plants (STP), Effluent Treatment Plants (ETP), Industrial Reverse Osmosis (RO), and BioZone biological wastewater recovery systems.';
+    $default_image = aqua_solve_asset('images/product_commercial_ro.png');
+    
+    $desc = $default_desc;
+    $title = wp_get_document_title();
+    $url = get_permalink();
+    
+    if (is_front_page() || is_home()) {
+        $url = home_url('/');
+        $desc = 'AquaSolve Water Clinic is a leading manufacturer of Commercial & Industrial Water Treatment Plants in Kerala. Turnkey STP, ETP, Industrial RO Plants & BioZone Technology.';
+    } elseif (is_page('about')) {
+        $desc = 'AquaSolve Water Clinic is an ISO 9001:2015 certified commercial & industrial water treatment engineering company established in 2015 in Kozhikode, Kerala.';
+    } elseif (is_page('solutions') || is_page('services')) {
+        $desc = 'Explore turnkey commercial and industrial water treatment solutions: High-capacity RO Plants, Sewage Treatment Plants (STP), Effluent Treatment Plants (ETP), and BioZone Technology.';
+    } elseif (is_page('biozone-technology')) {
+        $desc = 'BioZone Technology by AquaSolve Water Clinic: Compact biological STP & ETP wastewater treatment featuring reduced civil footprint, ON/OFF operational flexibility, and low power draw.';
+    } elseif (is_page('industries')) {
+        $desc = 'Custom water treatment engineering for hospitality, healthcare, manufacturing, residential, and educational commercial & industrial sectors across South India.';
+    } elseif (is_page('projects')) {
+        $desc = 'View AquaSolve Water Clinic\'s portfolio of completed turnkey commercial and industrial water treatment projects, STPs, ETPs, and RO plants across Kerala.';
+    } elseif (is_page('knowledge-center') || is_page('knowledge')) {
+        $desc = 'Technical engineering guides, water chemistry analysis, membrane separation principles, and wastewater management standards authored by AquaSolve Water Clinic.';
+    } elseif (is_singular()) {
+        $excerpt = get_the_excerpt();
+        if ($excerpt) {
+            $desc = esc_attr(wp_strip_all_tags($excerpt));
+        }
+        if (has_post_thumbnail()) {
+            $thumb = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
+            if ($thumb) {
+                $default_image = $thumb[0];
+            }
+        }
+    }
+
+    echo '<!-- 10/10 SEO Meta Tags -->' . "\n";
+    echo '<meta name="description" content="' . esc_attr($desc) . '" />' . "\n";
+    echo '<meta name="keywords" content="Commercial Water Treatment Plant, Industrial Water Treatment Plant, Sewage Treatment Plant Kerala, STP Plant Manufacturer, Effluent Treatment Plant ETP, Industrial RO Plant, BioZone Technology, Water Softener Commercial, Zero Liquid Discharge ZLD, AquaSolve Water Clinic Kozhikode" />' . "\n";
+    echo '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />' . "\n";
+    echo '<link rel="canonical" href="' . esc_url($url) . '" />' . "\n";
+    
+    // Geo Local SEO Meta Tags
+    echo '<meta name="geo.region" content="IN-KL" />' . "\n";
+    echo '<meta name="geo.placename" content="Thamarassery, Kozhikode" />' . "\n";
+    echo '<meta name="geo.position" content="11.4154;75.9348" />' . "\n";
+    echo '<meta name="ICBM" content="11.4154, 75.9348" />' . "\n";
+    
+    // Open Graph Social Meta Tags
+    echo '<meta property="og:locale" content="en_US" />' . "\n";
+    echo '<meta property="og:type" content="website" />' . "\n";
+    echo '<meta property="og:title" content="' . esc_attr($title) . '" />' . "\n";
+    echo '<meta property="og:description" content="' . esc_attr($desc) . '" />' . "\n";
+    echo '<meta property="og:url" content="' . esc_url($url) . '" />' . "\n";
+    echo '<meta property="og:site_name" content="' . esc_attr($site_name) . '" />' . "\n";
+    echo '<meta property="og:image" content="' . esc_url($default_image) . '" />' . "\n";
+    echo '<meta property="og:image:width" content="1200" />' . "\n";
+    echo '<meta property="og:image:height" content="630" />' . "\n";
+    
+    // Twitter Cards Meta Tags
+    echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
+    echo '<meta name="twitter:title" content="' . esc_attr($title) . '" />' . "\n";
+    echo '<meta name="twitter:description" content="' . esc_attr($desc) . '" />' . "\n";
+    echo '<meta name="twitter:image" content="' . esc_url($default_image) . '" />' . "\n";
+
+    // JSON-LD Structured Data Schema.org
+    $schema = array(
+        '@context' => 'https://schema.org',
+        '@graph'   => array(
+            array(
+                '@type'            => array('LocalBusiness', 'ProfessionalService', 'Organization'),
+                '@id'              => home_url('/#organization'),
+                'name'             => 'AquaSolve Water Clinic',
+                'alternateName'    => 'AquaSolve Commercial & Industrial Water Treatment',
+                'url'              => home_url('/'),
+                'logo'             => aqua_solve_asset('images/aqua_solve.png'),
+                'image'            => aqua_solve_asset('images/product_commercial_ro.png'),
+                'description'      => 'ISO 9001:2015 Certified engineering company specializing in Commercial & Industrial Water Treatment Plants, Sewage Treatment Plants (STP), Effluent Treatment Plants (ETP), Industrial Reverse Osmosis (RO), and BioZone biological wastewater recovery systems.',
+                'telephone'        => array('+919946450452', '+919846253025'),
+                'email'            => 'info@aquasolvewater.com',
+                'address'          => array(
+                    '@type'           => 'PostalAddress',
+                    'streetAddress'   => 'Thamarassery',
+                    'addressLocality'  => 'Kozhikode',
+                    'addressRegion'    => 'Kerala',
+                    'postalCode'      => '673573',
+                    'addressCountry'   => 'IN'
+                ),
+                'geo'              => array(
+                    '@type'     => 'GeoCoordinates',
+                    'latitude'  => 11.4154,
+                    'longitude' => 75.9348
+                ),
+                'priceRange'       => '₹₹₹',
+                'openingHoursSpecification' => array(
+                    '@type'     => 'OpeningHoursSpecification',
+                    'dayOfWeek' => array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'),
+                    'opens'     => '09:00',
+                    'closes'    => '18:00'
+                ),
+                'hasOfferCatalog'  => array(
+                    '@type'         => 'OfferCatalog',
+                    'name'          => 'Commercial & Industrial Water Treatment Solutions',
+                    'itemListElement' => array(
+                        array(
+                            '@type' => 'Offer',
+                            'itemOffered' => array(
+                                '@type' => 'Service',
+                                'name'  => 'Commercial & Industrial Reverse Osmosis (RO) Plants',
+                                'description' => 'High-capacity RO plants engineered with multi-stage pre-filtration for commercial and manufacturing facilities.'
+                            )
+                        ),
+                        array(
+                            '@type' => 'Offer',
+                            'itemOffered' => array(
+                                '@type' => 'Service',
+                                'name'  => 'Sewage Treatment Plants (STP)',
+                                'description' => 'Turnkey MBBR and MBR biological sewage treatment facilities for commercial complexes, apartments, and hotels.'
+                            )
+                        ),
+                        array(
+                            '@type' => 'Offer',
+                            'itemOffered' => array(
+                                '@type' => 'Service',
+                                'name'  => 'Effluent Treatment Plants (ETP) & ZLD',
+                                'description' => 'Industrial wastewater treatment plants with chemical coagulation and Zero Liquid Discharge configurations.'
+                            )
+                        ),
+                        array(
+                            '@type' => 'Offer',
+                            'itemOffered' => array(
+                                '@type' => 'Service',
+                                'name'  => 'BioZone Biological Treatment Technology',
+                                'description' => 'Specialized compact STP & ETP technology featuring reduced civil footprint, ON/OFF operational flexibility, and low power draw.'
+                            )
+                        )
+                    )
+                )
+            ),
+            array(
+                '@type'           => 'WebSite',
+                '@id'             => home_url('/#website'),
+                'url'             => home_url('/'),
+                'name'            => 'AquaSolve Water Clinic',
+                'publisher'       => array(
+                    '@id' => home_url('/#organization')
+                )
+            )
+        )
+    );
+
+    echo '<script type="application/ld+json">' . json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>' . "\n";
+}
+add_action('wp_head', 'aqua_solve_seo_meta_tags', 1);
+
+/**
+ * Dynamic robots.txt with sitemap reference for search engine crawlers
+ */
+function aqua_solve_custom_robots_txt($output, $public) {
+    $output .= "User-agent: *\n";
+    $output .= "Allow: /\n";
+    $output .= "Sitemap: " . esc_url(home_url('/wp-sitemap.xml')) . "\n";
+    return $output;
+}
+add_filter('robots_txt', 'aqua_solve_custom_robots_txt', 10, 2);
+
+
 
